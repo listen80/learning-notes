@@ -1,11 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const getDir = (dir, baseUrl = []) => {
   const struct = [];
-  fs.readdirSync(dir).forEach((subdir) => {
+  fs.readdirSync(dir).forEach(subdir => {
     const sub = path.join(dir, subdir);
-    const stat = fs.lstatSync(sub)
+    const stat = fs.lstatSync(sub);
     if (stat.isDirectory()) {
       baseUrl.push(subdir);
       let children = getDir(sub, baseUrl);
@@ -15,16 +15,15 @@ const getDir = (dir, baseUrl = []) => {
       if (subdir.match(/\.md$/)) {
         const title = subdir.replace(/\.md$/, "");
         struct.push({
-          title: title,
-          path: baseUrl.join('/') + "/" + title
+          title,
+          path: baseUrl.join("/") + "/" + title
         });
       }
     }
-  })
+  });
   return struct;
-}
+};
 
+let sidebar = getDir(path.join(__dirname, "docs"));
 
-let sidebar = getDir(path.join(__dirname, 'docs'));
-
-fs.writeFileSync('sidebar.json', JSON.stringify(sidebar, null, 2))
+fs.writeFileSync("sidebar.json", JSON.stringify(sidebar, null, 2));

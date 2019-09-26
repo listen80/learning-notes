@@ -459,3 +459,8 @@ header {
   background: white;
   display: flex;
 }
+
+.github {
+  padding: 16px;
+  display: inline-block;
+}

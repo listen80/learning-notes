@@ -30,16 +30,16 @@ var getHash = function(hash) {
 
   if (!hash) {
     return {
-      nav: '',
-      anchor: ''
-    }
+      nav: "",
+      anchor: ""
+    };
   }
 
-  hash = hash.split('#');
+  hash = hash.split("#");
   return {
     nav: hash[0],
-    anchor: decodeURIComponent(hash[1] || '')
-  }
+    anchor: decodeURIComponent(hash[1] || "")
+  };
 };
 
 var disqusCode = '<h3>留言</h3><div id="disqus_thread"></div>';
@@ -61,55 +61,61 @@ function initialize() {
 
   // page router
   router();
-  $(window).on('hashchange', router);
+  $(window).on("hashchange", router);
 }
 
 function init_sidebar_section() {
   $.get("sidebar.json", function(data) {
     function createSideBar(data, deep = 1) {
-      return data.map(function(item) {
-        if (item.children) {
-          return `<div><h${deep}>${item.title}</h${deep}>${createSideBar(item.children, deep + 1)}</div>`
-        } else if (item.title) {
-          return `<div><a href="#docs/${item.path}">${item.title}</a></div>`
-        } else {
-          return ''
-        }
-      }).join('')
+      return data
+        .map(function(item) {
+          if (item.children) {
+            return `<div><h${deep}>${item.title}</h${deep}>${createSideBar(
+              item.children,
+              deep + 1
+            )}</div>`;
+          } else if (item.title) {
+            return `<div><a href="#docs/${item.path}">${item.title}</a></div>`;
+          } else {
+            return "";
+          }
+        })
+        .join("");
     }
     var html = createSideBar(data);
     Object.keys(data);
-    var ul = `<ul class="nav navbar-nav"></ul>`
-    var header = data.map(function (data) {
-      return `<li><a href="../customize/">${data.title}</a></li>`
-    }).join('');
-    $('header').append(header)
-    $(ditto.sidebar_id).append(html);
+    var ul = `<ul class="nav navbar-nav"></ul>`;
+    var header = data
+      .map(function(data) {
+        return `<li><a href="../customize/">${data.title}</a></li>`;
+      })
+      .join("");
+    $("header").append(header);
+    $(ditto.sidebar_id + " aside").append(html);
 
     if (ditto.search_bar) {
-      init_searchbar();
     }
 
     // 初始化内容数组
-    var menuOL = $(ditto.sidebar_id + ' ol');
-    menuOL.attr('start', 0);
+    var menuOL = $(ditto.sidebar_id + " ol");
+    menuOL.attr("start", 0);
 
-    menuOL.find('li a').map(function() {
-      menu.push(this.href.slice(this.href.indexOf('#')));
+    menuOL.find("li a").map(function() {
+      menu.push(this.href.slice(this.href.indexOf("#")));
     });
-    $('#pageup').on('click', function() {
+    $("#pageup").on("click", function() {
       var hash = getHash().nav;
       for (var i = 0; i < menu.length; i++) {
-        if (hash === '') break;
-        if (menu[i] === '#' + hash) break;
+        if (hash === "") break;
+        if (menu[i] === "#" + hash) break;
       }
-      location.hash = menu[i - 1]
+      location.hash = menu[i - 1];
     });
-    $('#pagedown').on('click', function() {
+    $("#pagedown").on("click", function() {
       var hash = getHash().nav;
       for (var i = 0; i < menu.length; i++) {
-        if (hash === '') break;
-        if (menu[i] === '#' + hash) break;
+        if (hash === "") break;
+        if (menu[i] === "#" + hash) break;
       }
       location.hash = menu[i + 1];
     });
@@ -118,55 +124,29 @@ function init_sidebar_section() {
   });
 }
 
-function init_searchbar() {
-  var search = '<form class="searchBox" onSubmit="return searchbar_listener()">' +
-    '<input name="search" type="search">' +
-    '' +
-    //    '<a class="searchLink" href="#" target="_blank"><img src="images/magnifier.jpg"></a>' +
-    '</form>';
-  // $(ditto.sidebar_id).find('h2').first().before($(search));
-  // $('input.searchButton').click(searchbar_listener);
-  // $('input[name=search]').keydown(searchbar_listener);
-}
-
-function searchbar_listener(event) {
-  // event.preventDefault();
-  var q = $('input[name=search]').val();
-  if (q !== '') {
-    var url = 'https://github.com/ruanyf/es6tutorial/search?utf8=✓&q=' + encodeURIComponent(q);
-    window.open(url, '_blank');
-    win.focus();
-  }
-  return false;
-  /*
-  if (event.which === 13) {
-    var q = $('input[name=search]').val();
-    if (q !== '') {
-      var url = 'https://github.com/ruanyf/es6tutorial/search?utf8=✓&q=' + encodeURIComponent(q);
-      location.href = url;
-    }
-  }
-  */
-}
-
-
 function init_back_to_top_button() {
   $(ditto.back_to_top_id).show();
-  $(ditto.back_to_top_id).on('click', goTop);
+  $(ditto.back_to_top_id).on("click", goTop);
 }
 
 function goTop(e) {
   if (e) e.preventDefault();
-  $('html, body').animate({
-    scrollTop: 0
-  }, 200);
-  history.pushState(null, null, '#' + location.hash.split('#')[1]);
+  $("html, body").animate(
+    {
+      scrollTop: 0
+    },
+    200
+  );
+  history.pushState(null, null, "#" + location.hash.split("#")[1]);
 }
 
 function goSection(sectionId) {
-  $('html, body').animate({
-    scrollTop: ($('#' + sectionId).offset().top)
-  }, 300);
+  $("html, body").animate(
+    {
+      scrollTop: $("#" + sectionId).offset().top
+    },
+    300
+  );
 }
 
 function init_edit_button() {
@@ -177,7 +157,7 @@ function init_edit_button() {
     $(ditto.edit_id).on("click", function() {
       var hash = location.hash.replace("#", "/");
       if (/#.*$/.test(hash)) {
-        hash = hash.replace(/#.*$/, '');
+        hash = hash.replace(/#.*$/, "");
       }
       if (hash === "") {
         hash = "/" + ditto.index.replace(".md", "");
@@ -193,15 +173,15 @@ function init_edit_button() {
 function replace_symbols(text) {
   // replace symbols with underscore
   return text
-    .replace(/, /g, ',')
+    .replace(/, /g, ",")
     .replace(/[&\/\\#,.+=$~%'":*?<>{}\ \]\[]/g, "-")
-    .replace(/[()]/g, '');
+    .replace(/[()]/g, "");
 }
 
 function li_create_linkage(li_tag, header_level) {
   // add custom id and class attributes
   html_safe_tag = replace_symbols(li_tag.text());
-  li_tag.attr('data-src', html_safe_tag);
+  li_tag.attr("data-src", html_safe_tag);
   li_tag.attr("class", "link");
 
   // add click listener - on click scroll to relevant header section
@@ -209,19 +189,26 @@ function li_create_linkage(li_tag, header_level) {
     e.preventDefault();
     // scroll to relevant section
     var header = $(
-      ditto.content_id + " h" + header_level + "." + li_tag.attr('data-src')
+      ditto.content_id + " h" + header_level + "." + li_tag.attr("data-src")
     );
-    $('html, body').animate({
-      scrollTop: header.offset().top
-    }, 200);
+    $("html, body").animate(
+      {
+        scrollTop: header.offset().top
+      },
+      200
+    );
 
     // highlight the relevant section
     original_color = header.css("color");
-    header.animate({ color: "#ED1C24", }, 500, function() {
+    header.animate({ color: "#ED1C24" }, 500, function() {
       // revert back to orig color
       $(this).animate({ color: original_color }, 2500);
     });
-    history.pushState(null, null, '#' + location.hash.split('#')[1] + '#' + li_tag.attr('data-src'));
+    history.pushState(
+      null,
+      null,
+      "#" + location.hash.split("#")[1] + "#" + li_tag.attr("data-src")
+    );
   });
 }
 
@@ -234,35 +221,54 @@ function create_page_anchors() {
   for (var i = 2; i <= 4; i++) {
     // parse all headers
     var headers = [];
-    $('#content h' + i).map(function() {
+    $("#content h" + i).map(function() {
       var content = $(this).text();
       headers.push(content);
       $(this).addClass(replace_symbols(content));
       this.id = replace_symbols(content);
-      $(this).hover(function() {
-        $(this).html(content +
-          ' <a href="#' + location.hash.split('#')[1] +
-          '#' +
-          replace_symbols(content) +
-          '" class="section-link">§</a> <a href="#' +
-          location.hash.split('#')[1] + '" onclick="goTop()">⇧</a>');
-      }, function() {
-        $(this).html(content);
-      });
-      $(this).on('click', 'a.section-link', function(event) {
+      $(this).hover(
+        function() {
+          $(this).html(
+            content +
+              ' <a href="#' +
+              location.hash.split("#")[1] +
+              "#" +
+              replace_symbols(content) +
+              '" class="section-link">§</a> <a href="#' +
+              location.hash.split("#")[1] +
+              '" onclick="goTop()">⇧</a>'
+          );
+        },
+        function() {
+          $(this).html(content);
+        }
+      );
+      $(this).on("click", "a.section-link", function(event) {
         event.preventDefault();
-        history.pushState(null, null, '#' + location.hash.split('#')[1] + '#' + replace_symbols(content));
+        history.pushState(
+          null,
+          null,
+          "#" + location.hash.split("#")[1] + "#" + replace_symbols(content)
+        );
         goSection(replace_symbols(content));
       });
     });
 
-    if ((i === 2) && headers.length !== 0) {
-      var ul_tag = $('<ol></ol>')
-        .insertAfter('#content h1')
-        .addClass('content-toc')
-        .attr('id', 'content-toc');
+    if (i === 2 && headers.length !== 0) {
+      var ul_tag = $("<ol></ol>")
+        .insertAfter("#content h1")
+        .addClass("content-toc")
+        .attr("id", "content-toc");
       for (var j = 0; j < headers.length; j++) {
-        var li_tag = $('<li></li>').html('<a href="#' + location.hash.split('#')[1] + '#' + headers[j] + '">' + headers[j] + '</a>');
+        var li_tag = $("<li></li>").html(
+          '<a href="#' +
+            location.hash.split("#")[1] +
+            "#" +
+            headers[j] +
+            '">' +
+            headers[j] +
+            "</a>"
+        );
         ul_tag.append(li_tag);
         li_create_linkage(li_tag, i);
       }
@@ -273,8 +279,14 @@ function create_page_anchors() {
 function normalize_paths() {
   // images
   $(ditto.content_id + " img").map(function() {
-    var src = $(this).attr("src").replace("./", "");
-    if ($(this).attr("src").slice(0, 4) !== "http") {
+    var src = $(this)
+      .attr("src")
+      .replace("./", "");
+    if (
+      $(this)
+        .attr("src")
+        .slice(0, 4) !== "http"
+    ) {
       var pathname = location.pathname.substr(0, location.pathname.length - 1);
       var url = location.hash.replace("#", "");
 
@@ -295,32 +307,37 @@ function show_error() {
 
 function show_loading() {
   $(ditto.loading_id).show();
-  $(ditto.content_id).html(''); // clear content
+  $(ditto.content_id).html(""); // clear content
 
   // infinite loop until clearInterval() is called on loading
   var loading = setInterval(function() {
-    $(ditto.loading_id).fadeIn(1000).fadeOut(1000);
+    $(ditto.loading_id)
+      .fadeIn(1000)
+      .fadeOut(1000);
   }, 2000);
 
   return loading;
 }
 
 function router() {
-  var path = location.hash.replace(/#([^#]*)(#.*)?/, './$1');
+  var path = location.hash.replace(/#([^#]*)(#.*)?/, "./$1");
 
-  var hashArr = location.hash.split('#');
+  var hashArr = location.hash.split("#");
   var sectionId;
-  if (hashArr.length > 2 && !(/^comment-/.test(hashArr[2]))) {
+  if (hashArr.length > 2 && !/^comment-/.test(hashArr[2])) {
     sectionId = hashArr[2];
   }
 
-  if (ditto.save_progress && localStorage.getItem('menu-progress') !== location.hash) {
-    localStorage.setItem('menu-progress', location.hash);
-    localStorage.setItem('page-progress', 0);
+  if (
+    ditto.save_progress &&
+    localStorage.getItem("menu-progress") !== location.hash
+  ) {
+    localStorage.setItem("menu-progress", location.hash);
+    localStorage.setItem("page-progress", 0);
   }
 
   // default page if hash is empty
-  
+
   if (location.pathname === "/index.html") {
     path = location.pathname.replace("index.html", ditto.index);
     normalize_paths();
@@ -333,7 +350,7 @@ function router() {
 
   // 取消scroll事件的监听函数
   // 防止改变下面的变量perc的值
-  $(window).off('scroll');
+  $(window).off("scroll");
 
   // otherwise get the markdown and render it
   var loading = show_loading();
@@ -343,14 +360,15 @@ function router() {
     if ($(ditto.content_id + " h1").text() === ditto.document_title) {
       document.title = ditto.document_title;
     } else {
-      document.title = $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
+      document.title =
+        $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
     }
     normalize_paths();
     create_page_anchors();
 
     // 完成代码高亮
-    $('#content pre code').map(function() {
-      Prism.languages.js = Prism.languages.javascript
+    $("#content pre code").map(function() {
+      Prism.languages.js = Prism.languages.javascript;
       Prism.highlightElement(this);
       // code(this)
     });
@@ -359,10 +377,14 @@ function router() {
     // 加载disqus
     (function() {
       // http://docs.disqus.com/help/2/
-      window.disqus_shortname = 'es6';
-      window.disqus_identifier = (location.hash ? location.hash.replace("#", "") : 'READEME');
+      window.disqus_shortname = "es6";
+      window.disqus_identifier = location.hash
+        ? location.hash.replace("#", "")
+        : "READEME";
       window.disqus_title = $(ditto.content_id + " h1").text();
-      window.disqus_url = 'http://es6.ruanyifeng.com/' + (location.hash ? location.hash.replace("#", "") : 'README');
+      window.disqus_url =
+        "http://es6.ruanyifeng.com/" +
+        (location.hash ? location.hash.replace("#", "") : "README");
 
       // // http://docs.disqus.com/developers/universal/
       // (function() {
@@ -374,47 +396,61 @@ function router() {
       // })();
     })();
 
-    var perc = ditto.save_progress ? localStorage.getItem('page-progress') || 0 : 0;
+    var perc = ditto.save_progress
+      ? localStorage.getItem("page-progress") || 0
+      : 0;
 
     if (sectionId) {
-      $('html, body').animate({
-        scrollTop: ($('#' + decodeURI(sectionId)).offset().top)
-      }, 300);
+      $("html, body").animate(
+        {
+          scrollTop: $("#" + decodeURI(sectionId)).offset().top
+        },
+        300
+      );
     } else {
-      if (location.hash !== '' || Boolean(perc)) {
+      if (location.hash !== "" || Boolean(perc)) {
         if (!Boolean(perc)) {
-          $('html, body').animate({
-            scrollTop: ($('#content').offset().top + 10)
-          }, 300);
-          $('html, body').animate({
-            scrollTop: ($('#content').offset().top)
-          }, 300);
+          $("html, body").animate(
+            {
+              scrollTop: $("#content").offset().top + 10
+            },
+            300
+          );
+          $("html, body").animate(
+            {
+              scrollTop: $("#content").offset().top
+            },
+            300
+          );
         } else {
-          $('html, body').animate({
-            scrollTop: ($('body').height() - $(window).height()) * perc
-          }, 200);
+          $("html, body").animate(
+            {
+              scrollTop: ($("body").height() - $(window).height()) * perc
+            },
+            200
+          );
         }
       }
     }
-    if (location.hash === '' || '#' + getHash().nav === menu[0]) {
-      $('#pageup').css('display', 'none');
+    if (location.hash === "" || "#" + getHash().nav === menu[0]) {
+      $("#pageup").css("display", "none");
     } else {
-      $('#pageup').css('display', 'inline-block');
+      $("#pageup").css("display", "inline-block");
     }
 
-    if ('#' + getHash().nav === menu[(menu.length - 1)]) {
-      $('#pagedown').css('display', 'none');
+    if ("#" + getHash().nav === menu[menu.length - 1]) {
+      $("#pagedown").css("display", "none");
     } else {
-      $('#pagedown').css('display', 'inline-block');
+      $("#pagedown").css("display", "inline-block");
     }
 
     (function() {
       var $w = $(window);
-      var $prog2 = $('.progress-indicator-2');
+      var $prog2 = $(".progress-indicator-2");
       var wh = $w.height();
-      var h = $('body').height();
+      var h = $("body").height();
       var sHeight = h - wh;
-      $w.on('scroll', function() {
+      $w.on("scroll", function() {
         window.requestAnimationFrame(function() {
           var perc = Math.max(0, Math.min(1, $w.scrollTop() / sHeight));
           updateProgress(perc);
@@ -422,20 +458,19 @@ function router() {
       });
 
       function updateProgress(perc) {
-        $prog2.css({ width: (perc * 100).toFixed(2) + '%' });
-        ditto.save_progress && localStorage.setItem('page-progress', perc);
+        $prog2.css({ width: (perc * 100).toFixed(2) + "%" });
+        ditto.save_progress && localStorage.setItem("page-progress", perc);
       }
-
-    }());
-
-  }).fail(function() {
-    show_error();
-  }).always(function() {
-    clearInterval(loading);
-    $(ditto.loading_id).hide();
-  });
+    })();
+  })
+    .fail(function() {
+      show_error();
+    })
+    .always(function() {
+      clearInterval(loading);
+      $(ditto.loading_id).hide();
+    });
 }
-
 
 var CONFIG = {
   // your website's title
@@ -448,16 +483,16 @@ var CONFIG = {
   sidebar_file: "sidebar.md",
 
   // where the docs are actually stored on github - so you can edit
-  base_url: "https://github.com/ruanyf/es6tutorial/edit/gh-pages",
+  base_url: "https://github.com/ruanyf/es6tutorial/edit/gh-pages"
 };
 
 // **************************
 // DON'T EDIT FOLLOWING CODES
 // **************************
-Prism.languages.js = Prism.languages.javascript
+Prism.languages.js = Prism.languages.javascript;
 addConfig(ditto, CONFIG);
 function addConfig(obj, conf) {
-  Object.keys(conf).forEach(function (key) {
+  Object.keys(conf).forEach(function(key) {
     obj[key] = conf[key];
   });
 }
