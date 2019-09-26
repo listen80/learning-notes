@@ -430,7 +430,7 @@ input.searchButton {
 header {
   /* position: fixed; */
   /* top: 0; */
-  background: rgba(86, 102, 141, 1);
+  
   height: 60px;
   line-height: 60px;
   /* background: white; */
@@ -439,6 +439,7 @@ header {
   z-index: 1;
 }
 header ol {
+  background: rgba(86, 102, 141, 1);
   margin: 0;
   padding: 0;
 }
@@ -468,4 +469,7 @@ main {
 
 .nav.navbar-nav {
   position: fixed;
+}
+.nav li {
+  padding: 0 10px;
 }
