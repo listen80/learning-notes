@@ -388,15 +388,6 @@ function router() {
       window.disqus_url =
         "http://es6.ruanyifeng.com/" +
         (location.hash ? location.hash.replace("#", "") : "README");
-
-      // // http://docs.disqus.com/developers/universal/
-      // (function() {
-      //   // var dsq = document.createElement('script');
-      //   // dsq.type = 'text/javascript';
-      //   // dsq.async = true;
-      //   // dsq.src = 'http://' + window.disqus_shortname + '.disqus.com/embed.js';
-      //   // (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      // })();
     })();
 
     var perc = ditto.save_progress
@@ -446,12 +437,12 @@ function router() {
     } else {
       $("#pagedown").css("display", "inline-block");
     }
-
+    var $prog2 = $('<div class="progress-indicator-2"></div>').appendTo(
+      "body"
+    );
     (function() {
       var $w = $(window);
-      var $prog2 = $('<div class="progress-indicator-2"></div>').appendTo(
-        "body"
-      );
+      
       var wh = $w.height();
       var h = $("body").height();
       var sHeight = h - wh;

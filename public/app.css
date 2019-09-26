@@ -1,4 +1,3 @@
-/* General Setting */
 
 /* Small screens (default) */
 html {
@@ -39,8 +38,6 @@ body {
   padding-top: 25px;
 
   box-shadow: 0 0 40px #ccc;
-  -webkit-box-shadow: 0 0 40px #ccc;
-  -moz-box-shadow: 0 0 40px #ccc;
   border-right: 1px solid #bbb;
 }
 
@@ -55,22 +52,6 @@ body {
     overflow-y: scroll;
     overflow: -moz-scrollbars-vertical;
   }
-}
-
-#sidebar h1 {
-  /*font-size: 25px;*/
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-}
-
-
-#sidebar h2 {
-  font-size: 1rem;
-}
-
-#sidebar h5 {
-  margin-top: 20px;
-  margin-bottom: 0;
 }
 
 #sidebar a:visited,
@@ -93,7 +74,6 @@ body {
 }
 
 #sidebar ul li:before {
-  /* a hack to have dashes as a list style */
   content: "-";
   position: relative;
   left: -5px;
@@ -107,7 +87,6 @@ body {
   padding: 0;
 
   text-indent: -5px;
-  /* to compensate for the padding for the dash */
   font-size: 0.7rem;
 }
 
@@ -137,8 +116,6 @@ input.searchButton {
 }
 
 #content {
-  /* padding-top: 10px; */
-  /* padding-bottom: 150px; */
   margin-left: 20px;
   margin-right: 20px;
   font-size: 0.8rem;
@@ -146,19 +123,16 @@ input.searchButton {
   height: 100%;
   overflow: auto;
   margin: auto;
-  /* flex: 1; */
-
-  /* border: 1px solid black; */
-
+  box-sizing: border-box;
   counter-reset: section;
 }
 
 @media (min-width: 40rem) {
   #content {
-    width: 580px;
-    /* padding-left: 330px; */
+    width: 680px;
     margin-left: 0px;
     margin-right: 0px;
+    padding: 20px 20px 50px;
     margin: auto;
     padding-right: 20px;
   }
@@ -251,7 +225,6 @@ input.searchButton {
 }
 
 #content ol {
-  display: block;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -259,13 +232,11 @@ input.searchButton {
 #content ul li:before {
   content: "-";
   position: relative;
-  left: -5px;
 }
 
 #content ul li,
 #content ol li {
   text-indent: -5px;
-  /* to compensate for the padding for the dash */
   font-size: 0.8rem;
 }
 
@@ -322,8 +293,8 @@ input.searchButton {
 
   height: 20px;
   width: 70px;
-  top: 20px;
-
+  /* top: 20px; */
+  right: 20px;
   margin-left: 930px;
   margin-top: 0px;
 
@@ -347,7 +318,9 @@ input.searchButton {
 
   height: 17px;
   width: 70px;
-  top: 75px;
+  /* top: 75px; */
+  right: 20px;
+
 
   margin-left: 930px;
   margin-top: 0px;
@@ -457,9 +430,10 @@ input.searchButton {
 header {
   /* position: fixed; */
   /* top: 0; */
+  background: rgba(86, 102, 141, 1);
   height: 60px;
   line-height: 60px;
-  background: white;
+  /* background: white; */
   display: flex;
   width: 100%;
   z-index: 1;
