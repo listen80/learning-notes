@@ -70,12 +70,12 @@ function init_sidebar_section() {
       return data
         .map(function(item) {
           if (item.children) {
-            return `<div><h${deep}>${item.title}</h${deep}>${createSideBar(
+            return `<div><h${deep}>${item.path ? `<a href="#${item.path}">${item.title}</a>` : item.title}</h${deep}>${createSideBar(
               item.children,
               deep + 1
             )}</div>`;
           } else if (item.title) {
-            return `<div><a href="#docs/${item.path}">${item.title}</a></div>`;
+            return `<div><a href="#${item.path}">${item.title}</a></div>`;
           } else {
             return "";
           }
@@ -83,14 +83,13 @@ function init_sidebar_section() {
         .join("");
     }
     var html = createSideBar(data);
-    Object.keys(data);
-    var ul = `<ul class="nav navbar-nav"></ul>`;
     var header = data
       .map(function(data) {
-        return `<li><a href="../customize/">${data.title}</a></li>`;
+        return `<li><a href="#${data.title}/">${data.title}</a></li>`;
       })
       .join("");
-    $("header").append(header);
+
+    $("header").append(`<ol class="nav navbar-nav">${header}</ol>`);
     $(ditto.sidebar_id + " aside").append(html);
 
     if (ditto.search_bar) {
@@ -345,7 +344,11 @@ function router() {
     path = location.pathname + ditto.index;
     normalize_paths();
   } else {
-    path = path + ".md";
+    if (path.match(/\/$/)) {
+      path += ditto.index;
+    } else {
+      path = path + ".md";
+    }
   }
 
   // 取消scroll事件的监听函数
@@ -354,7 +357,7 @@ function router() {
 
   // otherwise get the markdown and render it
   var loading = show_loading();
-  $.get(path, function(data) {
+  $.get("docs/" + path, function(data) {
     $(ditto.error_id).hide();
     $(ditto.content_id).html(marked(data) + disqusCode);
     if ($(ditto.content_id + " h1").text() === ditto.document_title) {

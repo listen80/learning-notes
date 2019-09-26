@@ -9,15 +9,23 @@ const getDir = (dir, baseUrl = []) => {
     if (stat.isDirectory()) {
       baseUrl.push(subdir);
       let children = getDir(sub, baseUrl);
-      struct.push({ title: subdir, children: children });
+      struct.push({
+        title: subdir,
+        children: children,
+        path: children.path ? baseUrl.join("/") + "/" : ""
+      });
       baseUrl.pop();
     } else if (stat.isFile()) {
       if (subdir.match(/\.md$/)) {
         const title = subdir.replace(/\.md$/, "");
-        struct.push({
-          title,
-          path: baseUrl.join("/") + "/" + title
-        });
+        if (subdir === "README.md") {
+          struct.path = true;
+        } else {
+          struct.push({
+            title,
+            path: baseUrl.join("/") + "/" + title
+          });
+        }
       }
     }
   });

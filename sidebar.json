@@ -7,10 +7,6 @@
         "path": "Chatting/Docker"
       },
       {
-        "title": "README",
-        "path": "Chatting/README"
-      },
-      {
         "title": "云服务器",
         "path": "Chatting/云服务器"
       },
@@ -25,9 +21,11 @@
             "title": "ali",
             "path": "Chatting/笔试题/ali"
           }
-        ]
+        ],
+        "path": ""
       }
-    ]
+    ],
+    "path": "Chatting/"
   },
   {
     "title": "JavaScript",
@@ -60,10 +58,6 @@
             "path": "JavaScript/ECMAScript/Object"
           },
           {
-            "title": "README",
-            "path": "JavaScript/ECMAScript/README"
-          },
-          {
             "title": "RegExp",
             "path": "JavaScript/ECMAScript/RegExp"
           },
@@ -75,7 +69,8 @@
             "title": "Symbol",
             "path": "JavaScript/ECMAScript/Symbol"
           }
-        ]
+        ],
+        "path": ""
       },
       {
         "title": "practices",
@@ -104,11 +99,8 @@
             "title": "数组乱序",
             "path": "JavaScript/practices/数组乱序"
           }
-        ]
-      },
-      {
-        "title": "README",
-        "path": "JavaScript/README"
+        ],
+        "path": ""
       },
       {
         "title": "框架",
@@ -117,9 +109,11 @@
             "title": "jQuery",
             "path": "JavaScript/框架/jQuery"
           }
-        ]
+        ],
+        "path": ""
       }
-    ]
+    ],
+    "path": "JavaScript/"
   },
   {
     "title": "协议",
@@ -131,12 +125,9 @@
       {
         "title": "HTTP2",
         "path": "协议/HTTP2"
-      },
-      {
-        "title": "README",
-        "path": "协议/README"
       }
-    ]
+    ],
+    "path": "协议/"
   },
   {
     "title": "安全",
@@ -146,10 +137,6 @@
         "path": "安全/CSRF"
       },
       {
-        "title": "README",
-        "path": "安全/README"
-      },
-      {
         "title": "ReplayAttacks",
         "path": "安全/ReplayAttacks"
       },
@@ -157,20 +144,18 @@
         "title": "XSS",
         "path": "安全/XSS"
       }
-    ]
+    ],
+    "path": "安全/"
   },
   {
     "title": "数据结构",
     "children": [
       {
-        "title": "README",
-        "path": "数据结构/README"
-      },
-      {
         "title": "线性结构",
         "path": "数据结构/线性结构"
       }
-    ]
+    ],
+    "path": "数据结构/"
   },
   {
     "title": "算法",
@@ -180,13 +165,10 @@
         "path": "算法/find"
       },
       {
-        "title": "README",
-        "path": "算法/README"
-      },
-      {
         "title": "sort",
         "path": "算法/sort"
       }
-    ]
+    ],
+    "path": "算法/"
   }
 ]
