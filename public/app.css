@@ -47,7 +47,7 @@ body {
 @media (min-width: 40rem) {
   #sidebar {
     width: 280px;
-    position: fixed;
+    /* position: fixed; */
     height: 100%;
     margin-right: 20px;
     padding-bottom: 0px;
@@ -137,12 +137,16 @@ input.searchButton {
 }
 
 #content {
-  padding-top: 10px;
-  padding-bottom: 150px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 150px; */
   margin-left: 20px;
   margin-right: 20px;
   font-size: 0.8rem;
   line-height: 1.3rem;
+  height: 100%;
+  overflow: auto;
+  margin: auto;
+  /* flex: 1; */
 
   /* border: 1px solid black; */
 
@@ -152,9 +156,11 @@ input.searchButton {
 @media (min-width: 40rem) {
   #content {
     width: 580px;
-    padding-left: 330px;
+    /* padding-left: 330px; */
     margin-left: 0px;
     margin-right: 0px;
+    margin: auto;
+    padding-right: 20px;
   }
 }
 
@@ -341,7 +347,7 @@ input.searchButton {
 
   height: 17px;
   width: 70px;
-  top: 45px;
+  top: 75px;
 
   margin-left: 930px;
   margin-top: 0px;
@@ -449,8 +455,8 @@ input.searchButton {
 }
 
 header {
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
+  /* top: 0; */
   height: 60px;
   line-height: 60px;
   background: white;
@@ -468,4 +474,24 @@ header li {
 .github {
   padding: 16px;
   display: inline-block;
+}
+
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+.nav.navbar-nav {
+  position: fixed;
 }
