@@ -1,6 +1,3 @@
-
-
-
 var ditto = {
   // page element ids
   content_id: "#content",
@@ -69,8 +66,6 @@ function initialize() {
 
 function init_sidebar_section() {
   $.get("sidebar.json", function(data) {
-    data = JSON.parse(data);
-
     function createSideBar(data, deep = 1) {
       return data.map(function(item) {
         if (item.children) {
@@ -89,7 +84,6 @@ function init_sidebar_section() {
       return `<li><a href="../customize/">${data.title}</a></li>`
     }).join('');
     $('header').append(header)
-
     $(ditto.sidebar_id).append(html);
 
     if (ditto.search_bar) {
@@ -119,7 +113,7 @@ function init_sidebar_section() {
       }
       location.hash = menu[i + 1];
     });
-  }, "text").fail(function() {
+  }).fail(function() {
     alert("Opps! can't find the sidebar file to display!");
   });
 }
@@ -326,6 +320,7 @@ function router() {
   }
 
   // default page if hash is empty
+  
   if (location.pathname === "/index.html") {
     path = location.pathname.replace("index.html", ditto.index);
     normalize_paths();
@@ -369,14 +364,14 @@ function router() {
       window.disqus_title = $(ditto.content_id + " h1").text();
       window.disqus_url = 'http://es6.ruanyifeng.com/' + (location.hash ? location.hash.replace("#", "") : 'README');
 
-      // http://docs.disqus.com/developers/universal/
-      (function() {
-        // var dsq = document.createElement('script');
-        // dsq.type = 'text/javascript';
-        // dsq.async = true;
-        // dsq.src = 'http://' + window.disqus_shortname + '.disqus.com/embed.js';
-        // (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
+      // // http://docs.disqus.com/developers/universal/
+      // (function() {
+      //   // var dsq = document.createElement('script');
+      //   // dsq.type = 'text/javascript';
+      //   // dsq.async = true;
+      //   // dsq.src = 'http://' + window.disqus_shortname + '.disqus.com/embed.js';
+      //   // (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      // })();
     })();
 
     var perc = ditto.save_progress ? localStorage.getItem('page-progress') || 0 : 0;

@@ -1,22 +1,5 @@
 [
   {
-    "title": "Algorithm",
-    "children": [
-      {
-        "title": "find",
-        "path": "Algorithm/find"
-      },
-      {
-        "title": "README",
-        "path": "Algorithm/README"
-      },
-      {
-        "title": "sort",
-        "path": "Algorithm/sort"
-      }
-    ]
-  },
-  {
     "title": "Chatting",
     "children": [
       {
@@ -43,19 +26,6 @@
             "path": "Chatting/笔试题/ali"
           }
         ]
-      }
-    ]
-  },
-  {
-    "title": "DataStructure",
-    "children": [
-      {
-        "title": "README",
-        "path": "DataStructure/README"
-      },
-      {
-        "title": "线性结构",
-        "path": "DataStructure/线性结构"
       }
     ]
   },
@@ -152,40 +122,70 @@
     ]
   },
   {
-    "title": "NetworkProtocol",
+    "title": "协议",
     "children": [
       {
         "title": "HTTP",
-        "path": "NetworkProtocol/HTTP"
+        "path": "协议/HTTP"
       },
       {
         "title": "HTTP2",
-        "path": "NetworkProtocol/HTTP2"
+        "path": "协议/HTTP2"
       },
       {
         "title": "README",
-        "path": "NetworkProtocol/README"
+        "path": "协议/README"
       }
     ]
   },
   {
-    "title": "WebSecurity",
+    "title": "安全",
     "children": [
       {
         "title": "CSRF",
-        "path": "WebSecurity/CSRF"
+        "path": "安全/CSRF"
       },
       {
         "title": "README",
-        "path": "WebSecurity/README"
+        "path": "安全/README"
       },
       {
         "title": "ReplayAttacks",
-        "path": "WebSecurity/ReplayAttacks"
+        "path": "安全/ReplayAttacks"
       },
       {
         "title": "XSS",
-        "path": "WebSecurity/XSS"
+        "path": "安全/XSS"
+      }
+    ]
+  },
+  {
+    "title": "数据结构",
+    "children": [
+      {
+        "title": "README",
+        "path": "数据结构/README"
+      },
+      {
+        "title": "线性结构",
+        "path": "数据结构/线性结构"
+      }
+    ]
+  },
+  {
+    "title": "算法",
+    "children": [
+      {
+        "title": "find",
+        "path": "算法/find"
+      },
+      {
+        "title": "README",
+        "path": "算法/README"
+      },
+      {
+        "title": "sort",
+        "path": "算法/sort"
       }
     ]
   }

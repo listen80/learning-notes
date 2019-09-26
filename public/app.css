@@ -63,7 +63,7 @@ body {
   padding-bottom: 0px;
 }
 
-/*#sidebar h1 a:link, #sidebar h1 a:visited {
+#sidebar h1 a:link, #sidebar h1 a:visited {
     color: #333;
 }
 
@@ -112,7 +112,7 @@ left: -5px;
   font-size: 0.7rem;
 }
 
-*/ form.searchBox {
+form.searchBox {
   width: 180px;
   border: 1px solid #4682BE;
   height: 20px;
@@ -166,9 +166,7 @@ input.searchButton {
   padding-bottom: 10px;
   padding-left: 0.7rem;
   line-height: 1.2;
-
   color: #FFF;
-
   background: #111;
   border-radius: 5px;
 }
@@ -255,7 +253,6 @@ input.searchButton {
 
 
 #content ul li:before {
-  /* a hack to have dashes as a list style */
   content: "-";
   position: relative;
   left: -5px;
