@@ -21,10 +21,12 @@ var ditto = {
 /**
  * 获取当前hash
  *
- * @param {string} hash 要解析的hash，默认取当前页面的hash，如： nav#类目 => {nav:nav, anchor:类目}
+ * @param {string} hash 要解析的hash，默认取当前页面的hash，如： nav#类目 ===== {nav:nav, anchor:类目}
  * @description 分导航和页面锚点
  * @return {Object} {nav:导航, anchor:页面锚点}
  */
+
+var sperate = '@'
 var getHash = function(hash) {
   hash = hash || window.location.hash.substr(1);
 
@@ -82,18 +84,21 @@ function init_sidebar_section() {
         })
         .join("");
     }
-    var html = createSideBar(data);
-    var header = data
+    var html = Object.values(data).map(function (data) {
+      return createSideBar(data);
+    });
+    debugger
+    
+    var header = Object.keys(data)
       .map(function(data) {
-        return `<li><a href="#${data.title}/">${data.title}</a></li>`;
+        return `<li><a href="#${data}/">${data}</a></li>`;
       })
       .join("");
 
     $("header").append(`<ol class="nav navbar-nav">${header}</ol>`);
     $(ditto.sidebar_id + " aside").append(html);
 
-    if (ditto.search_bar) {
-    }
+    if (ditto.search_bar) {}
 
     // 初始化内容数组
     var menuOL = $(ditto.sidebar_id + " ol");
@@ -130,8 +135,7 @@ function init_back_to_top_button() {
 
 function goTop(e) {
   if (e) e.preventDefault();
-  $("html, body").animate(
-    {
+  $("html, body").animate({
       scrollTop: 0
     },
     200
@@ -140,8 +144,7 @@ function goTop(e) {
 }
 
 function goSection(sectionId) {
-  $("html, body").animate(
-    {
+  $("html, body").animate({
       scrollTop: $("#" + sectionId).offset().top
     },
     300
@@ -190,8 +193,7 @@ function li_create_linkage(li_tag, header_level) {
     var header = $(
       ditto.content_id + " h" + header_level + "." + li_tag.attr("data-src")
     );
-    $("html, body").animate(
-      {
+    $("html, body").animate({
         scrollTop: header.offset().top
       },
       200
@@ -203,10 +205,11 @@ function li_create_linkage(li_tag, header_level) {
       // revert back to orig color
       $(this).animate({ color: original_color }, 2500);
     });
+    debugger
     history.pushState(
       null,
       null,
-      "#" + location.hash.split("#")[1] + "#" + li_tag.attr("data-src")
+      location.hash.split(sperate)[0] + sperate + li_tag.attr("data-src")
     );
   });
 }
@@ -229,13 +232,13 @@ function create_page_anchors() {
         function() {
           $(this).html(
             content +
-              ' <a href="#' +
-              location.hash.split("#")[1] +
-              "#" +
-              replace_symbols(content) +
-              '" class="section-link">§</a> <a href="#' +
-              location.hash.split("#")[1] +
-              '" onclick="goTop()">⇧</a>'
+            ' <a href="' +
+            location.hash.split(sperate)[0] +
+            sperate +
+            replace_symbols(content) +
+            '" class="section-link">§</a> <a href="#' +
+            location.hash.split("#")[1] +
+            '" onclick="goTop()">⇧</a>'
           );
         },
         function() {
@@ -247,7 +250,7 @@ function create_page_anchors() {
         history.pushState(
           null,
           null,
-          "#" + location.hash.split("#")[1] + "#" + replace_symbols(content)
+          location.hash.split(sperate)[0] + sperate + replace_symbols(content)
         );
         goSection(replace_symbols(content));
       });
@@ -261,12 +264,12 @@ function create_page_anchors() {
       for (var j = 0; j < headers.length; j++) {
         var li_tag = $("<li></li>").html(
           '<a href="#' +
-            location.hash.split("#")[1] +
-            "#" +
-            headers[j] +
-            '">' +
-            headers[j] +
-            "</a>"
+          location.hash.split("#")[1] +
+          "#" +
+          headers[j] +
+          '">' +
+          headers[j] +
+          "</a>"
         );
         ul_tag.append(li_tag);
         li_create_linkage(li_tag, i);
@@ -283,8 +286,8 @@ function normalize_paths() {
       .replace("./", "");
     if (
       $(this)
-        .attr("src")
-        .slice(0, 4) !== "http"
+      .attr("src")
+      .slice(0, 4) !== "http"
     ) {
       var pathname = location.pathname.substr(0, location.pathname.length - 1);
       var url = location.hash.replace("#", "");
@@ -319,9 +322,7 @@ function show_loading() {
 }
 
 function router() {
-  var path = location.hash.replace(/#([^#]*)(#.*)?/, "./$1");
-
-  var hashArr = location.hash.split("#");
+  var hashArr = location.hash.substr(1).split(sperate);
   var sectionId;
   if (hashArr.length > 2 && !/^comment-/.test(hashArr[2])) {
     sectionId = hashArr[2];
@@ -334,14 +335,16 @@ function router() {
     localStorage.setItem("menu-progress", location.hash);
     localStorage.setItem("page-progress", 0);
   }
-
+  path = hashArr[0]
   // default page if hash is empty
-
-  if (location.pathname === "/index.html") {
+  var base = location.pathname.replace(/[\w.]+$/, "");
+  /*if (location.pathname === "/index.html") {
     path = location.pathname.replace("index.html", ditto.index);
     normalize_paths();
-  } else if (path === "") {
-    path = location.pathname + ditto.index;
+  } else */
+
+  if (path === "") {
+    path = ditto.index;
     normalize_paths();
   } else {
     if (path.match(/\/$/)) {
@@ -350,6 +353,7 @@ function router() {
       path = path + ".md";
     }
   }
+  var pathArr = ["./docs/", path];
 
   // 取消scroll事件的监听函数
   // 防止改变下面的变量perc的值
@@ -357,110 +361,112 @@ function router() {
 
   // otherwise get the markdown and render it
   var loading = show_loading();
-  $.get("docs/" + path, function(data) {
-    $(ditto.error_id).hide();
-    $(ditto.content_id).html(marked(data) + disqusCode);
-    if ($(ditto.content_id + " h1").text() === ditto.document_title) {
-      document.title = ditto.document_title;
-    } else {
-      document.title =
-        $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
-    }
-    normalize_paths();
-    create_page_anchors();
 
-    // 完成代码高亮
-    $("#content pre code").map(function() {
-      Prism.languages.js = Prism.languages.javascript;
-      Prism.highlightElement(this);
-      // code(this)
-    });
-    // code();
+  $(ditto.content_id).html('Loading ...');
+  $.get(pathArr.join(''), function(data) {
+      $(ditto.error_id).hide();
+      var nav = `<div id="flip">
+      <span id="pageup">上一章</span><span id="pagedown">下一章</span>
+    </div>`
+      $(ditto.content_id).html(marked(data) + nav);
+      if ($(ditto.content_id + " h1").text() === ditto.document_title) {
+        document.title = ditto.document_title;
+      } else {
+        document.title =
+          $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
+      }
+      normalize_paths();
+      create_page_anchors();
 
-    // 加载disqus
-    (function() {
-      // http://docs.disqus.com/help/2/
-      window.disqus_shortname = "es6";
-      window.disqus_identifier = location.hash
-        ? location.hash.replace("#", "")
-        : "READEME";
-      window.disqus_title = $(ditto.content_id + " h1").text();
-      window.disqus_url =
-        "http://es6.ruanyifeng.com/" +
-        (location.hash ? location.hash.replace("#", "") : "README");
-    })();
+      // 完成代码高亮
+      $("#content pre code").map(function() {
+        Prism.languages.js = Prism.languages.javascript;
+        Prism.highlightElement(this);
+        // code(this)
+      });
+      // code();
 
-    var perc = ditto.save_progress
-      ? localStorage.getItem("page-progress") || 0
-      : 0;
+      // 加载disqus
+      (function() {
+        // http://docs.disqus.com/help/2/
+        window.disqus_shortname = "es6";
+        window.disqus_identifier = location.hash ?
+          location.hash.replace("#", "") :
+          "READEME";
+        window.disqus_title = $(ditto.content_id + " h1").text();
+        window.disqus_url =
+          "http://es6.ruanyifeng.com/" +
+          (location.hash ? location.hash.replace("#", "") : "README");
+      })();
 
-    if (sectionId) {
-      $("html, body").animate(
-        {
-          scrollTop: $("#" + decodeURI(sectionId)).offset().top
-        },
-        300
-      );
-    } else {
-      if (location.hash !== "" || Boolean(perc)) {
-        if (!Boolean(perc)) {
-          $("html, body").animate(
-            {
-              scrollTop: $("#content").offset().top + 10
-            },
-            300
-          );
-          $("html, body").animate(
-            {
-              scrollTop: $("#content").offset().top
-            },
-            300
-          );
-        } else {
-          $("html, body").animate(
-            {
-              scrollTop: ($("body").height() - $(window).height()) * perc
-            },
-            200
-          );
+      var perc = ditto.save_progress ?
+        localStorage.getItem("page-progress") || 0 :
+        0;
+
+      if (sectionId) {
+        $("html, body").animate({
+            scrollTop: $("#" + decodeURI(sectionId)).offset().top
+          },
+          300
+        );
+      } else {
+        if (location.hash !== "" || Boolean(perc)) {
+          if (!Boolean(perc)) {
+            $("html, body").animate({
+                scrollTop: $("#content").offset().top + 10
+              },
+              300
+            );
+            $("html, body").animate({
+                scrollTop: $("#content").offset().top
+              },
+              300
+            );
+          } else {
+            $("html, body").animate({
+                scrollTop: ($("body").height() - $(window).height()) * perc
+              },
+              200
+            );
+          }
         }
       }
-    }
-    if (location.hash === "" || "#" + getHash().nav === menu[0]) {
-      $("#pageup").css("display", "none");
-    } else {
-      $("#pageup").css("display", "inline-block");
-    }
-
-    if ("#" + getHash().nav === menu[menu.length - 1]) {
-      $("#pagedown").css("display", "none");
-    } else {
-      $("#pagedown").css("display", "inline-block");
-    }
-    var $prog2 = $('<div class="progress-indicator-2"></div>').appendTo(
-      "body"
-    );
-    (function() {
-      var $w = $(window);
-      
-      var wh = $w.height();
-      var h = $("body").height();
-      var sHeight = h - wh;
-      $w.on("scroll", function() {
-        window.requestAnimationFrame(function() {
-          var perc = Math.max(0, Math.min(1, $w.scrollTop() / sHeight));
-          updateProgress(perc);
-        });
-      });
-
-      function updateProgress(perc) {
-        $prog2.css({ width: (perc * 100).toFixed(2) + "%" });
-        ditto.save_progress && localStorage.setItem("page-progress", perc);
+      if (location.hash === "" || "#" + getHash().nav === menu[0]) {
+        $("#pageup").css("display", "none");
+      } else {
+        $("#pageup").css("display", "inline-block");
       }
-    })();
-  })
+
+      if ("#" + getHash().nav === menu[menu.length - 1]) {
+        $("#pagedown").css("display", "none");
+      } else {
+        $("#pagedown").css("display", "inline-block");
+      }
+      var $prog2 = $('<div class="progress-indicator-2"></div>').appendTo(
+        "body"
+      );
+      (function() {
+        var $w = $(window);
+
+        var wh = $w.height();
+        var h = $("body").height();
+        var sHeight = h - wh;
+        $w.on("scroll", function() {
+          window.requestAnimationFrame(function() {
+            var perc = Math.max(0, Math.min(1, $w.scrollTop() / sHeight));
+            updateProgress(perc);
+          });
+        });
+
+        function updateProgress(perc) {
+          $prog2.css({ width: (perc * 100).toFixed(2) + "%" });
+          ditto.save_progress && localStorage.setItem("page-progress", perc);
+        }
+      })();
+    })
     .fail(function() {
-      show_error();
+      $(ditto.content_id).html('Oops! ... File not found!');
+      // show_error();
     })
     .always(function() {
       clearInterval(loading);
@@ -470,7 +476,7 @@ function router() {
 
 var CONFIG = {
   // your website's title
-  document_title: "ECMAScript 6入门",
+  document_title: "学习笔记",
 
   // index page
   index: "README.md",

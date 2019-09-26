@@ -1,174 +1,120 @@
-[
-  {
-    "title": "Chatting",
-    "children": [
-      {
-        "title": "Docker",
-        "path": "Chatting/Docker"
-      },
-      {
-        "title": "云服务器",
-        "path": "Chatting/云服务器"
-      },
-      {
-        "title": "云计算",
-        "path": "Chatting/云计算"
-      },
-      {
-        "title": "笔试题",
-        "children": [
-          {
-            "title": "ali",
-            "path": "Chatting/笔试题/ali"
-          }
-        ],
-        "path": ""
-      }
-    ],
-    "path": "Chatting/"
-  },
-  {
-    "title": "JavaScript",
-    "children": [
-      {
-        "title": "ECMAScript",
-        "children": [
-          {
-            "title": "Array",
-            "path": "JavaScript/ECMAScript/Array"
-          },
-          {
-            "title": "Date",
-            "path": "JavaScript/ECMAScript/Date"
-          },
-          {
-            "title": "Error",
-            "path": "JavaScript/ECMAScript/Error"
-          },
-          {
-            "title": "Function",
-            "path": "JavaScript/ECMAScript/Function"
-          },
-          {
-            "title": "Number",
-            "path": "JavaScript/ECMAScript/Number"
-          },
-          {
-            "title": "Object",
-            "path": "JavaScript/ECMAScript/Object"
-          },
-          {
-            "title": "RegExp",
-            "path": "JavaScript/ECMAScript/RegExp"
-          },
-          {
-            "title": "String",
-            "path": "JavaScript/ECMAScript/String"
-          },
-          {
-            "title": "Symbol",
-            "path": "JavaScript/ECMAScript/Symbol"
-          }
-        ],
-        "path": ""
-      },
-      {
-        "title": "practices",
-        "children": [
-          {
-            "title": "call",
-            "path": "JavaScript/practices/call"
-          },
-          {
-            "title": "instanceof",
-            "path": "JavaScript/practices/instanceof"
-          },
-          {
-            "title": "RegExp",
-            "path": "JavaScript/practices/RegExp"
-          },
-          {
-            "title": "sqrt",
-            "path": "JavaScript/practices/sqrt"
-          },
-          {
-            "title": "typeof",
-            "path": "JavaScript/practices/typeof"
-          },
-          {
-            "title": "数组乱序",
-            "path": "JavaScript/practices/数组乱序"
-          }
-        ],
-        "path": ""
-      },
-      {
-        "title": "框架",
-        "children": [
-          {
-            "title": "jQuery",
-            "path": "JavaScript/框架/jQuery"
-          }
-        ],
-        "path": ""
-      }
-    ],
-    "path": "JavaScript/"
-  },
-  {
-    "title": "协议",
-    "children": [
-      {
-        "title": "HTTP",
-        "path": "协议/HTTP"
-      },
-      {
-        "title": "HTTP2",
-        "path": "协议/HTTP2"
-      }
-    ],
-    "path": "协议/"
-  },
-  {
-    "title": "安全",
-    "children": [
-      {
-        "title": "CSRF",
-        "path": "安全/CSRF"
-      },
-      {
-        "title": "ReplayAttacks",
-        "path": "安全/ReplayAttacks"
-      },
-      {
-        "title": "XSS",
-        "path": "安全/XSS"
-      }
-    ],
-    "path": "安全/"
-  },
-  {
-    "title": "数据结构",
-    "children": [
-      {
-        "title": "线性结构",
-        "path": "数据结构/线性结构"
-      }
-    ],
-    "path": "数据结构/"
-  },
-  {
-    "title": "算法",
-    "children": [
-      {
-        "title": "find",
-        "path": "算法/find"
-      },
-      {
-        "title": "sort",
-        "path": "算法/sort"
-      }
-    ],
-    "path": "算法/"
-  }
-]
+{
+  "javascript": [
+    {
+      "title": "ECMAScript",
+      "children": [
+        {
+          "title": "Array",
+          "path": "javascript/ECMAScript/Array"
+        },
+        {
+          "title": "Date",
+          "path": "javascript/ECMAScript/Date"
+        },
+        {
+          "title": "Error",
+          "path": "javascript/ECMAScript/Error"
+        },
+        {
+          "title": "Function",
+          "path": "javascript/ECMAScript/Function"
+        },
+        {
+          "title": "Number",
+          "path": "javascript/ECMAScript/Number"
+        },
+        {
+          "title": "Object",
+          "path": "javascript/ECMAScript/Object"
+        },
+        {
+          "title": "RegExp",
+          "path": "javascript/ECMAScript/RegExp"
+        },
+        {
+          "title": "String",
+          "path": "javascript/ECMAScript/String"
+        },
+        {
+          "title": "Symbol",
+          "path": "javascript/ECMAScript/Symbol"
+        }
+      ],
+      "path": ""
+    },
+    {
+      "title": "practices",
+      "children": [
+        {
+          "title": "call",
+          "path": "javascript/practices/call"
+        },
+        {
+          "title": "instanceof",
+          "path": "javascript/practices/instanceof"
+        },
+        {
+          "title": "RegExp",
+          "path": "javascript/practices/RegExp"
+        },
+        {
+          "title": "sqrt",
+          "path": "javascript/practices/sqrt"
+        },
+        {
+          "title": "typeof",
+          "path": "javascript/practices/typeof"
+        },
+        {
+          "title": "数组乱序",
+          "path": "javascript/practices/数组乱序"
+        }
+      ],
+      "path": ""
+    },
+    {
+      "title": "框架",
+      "children": [
+        {
+          "title": "jQuery",
+          "path": "javascript/框架/jQuery"
+        }
+      ],
+      "path": ""
+    }
+  ],
+  "协议": [
+    {
+      "title": "HTTP",
+      "path": "协议/HTTP"
+    },
+    {
+      "title": "HTTP2",
+      "path": "协议/HTTP2"
+    }
+  ],
+  "Chatting": [
+    {
+      "title": "Docker",
+      "path": "Chatting/Docker"
+    },
+    {
+      "title": "云服务器",
+      "path": "Chatting/云服务器"
+    },
+    {
+      "title": "云计算",
+      "path": "Chatting/云计算"
+    },
+    {
+      "title": "笔试题",
+      "children": [
+        {
+          "title": "ali",
+          "path": "Chatting/笔试题/ali"
+        }
+      ],
+      "path": ""
+    }
+  ]
+}

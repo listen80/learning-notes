@@ -32,6 +32,12 @@ const getDir = (dir, baseUrl = []) => {
   return struct;
 };
 
-let sidebar = getDir(path.join(__dirname, "docs"));
+const modules = Object.create(null);
 
-fs.writeFileSync("sidebar.json", JSON.stringify(sidebar, null, 2));
+["javascript", "协议", "Chatting"].forEach(function (module) {
+  modules[module] = getDir(path.join(__dirname, "docs", module), [module])
+});
+
+let sidebar = getDir(path.join(__dirname, "docs", "javascript"));
+
+fs.writeFileSync("sidebar.json", JSON.stringify(modules, null, 2));
