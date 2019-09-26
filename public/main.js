@@ -446,7 +446,9 @@ function router() {
 
     (function() {
       var $w = $(window);
-      var $prog2 = $(".progress-indicator-2");
+      var $prog2 = $('<div class="progress-indicator-2"></div>').appendTo(
+        "body"
+      );
       var wh = $w.height();
       var h = $("body").height();
       var sHeight = h - wh;
@@ -480,7 +482,6 @@ var CONFIG = {
   index: "README.md",
 
   // sidebar file
-  sidebar_file: "sidebar.md",
 
   // where the docs are actually stored on github - so you can edit
   base_url: "https://github.com/ruanyf/es6tutorial/edit/gh-pages"
@@ -490,11 +491,6 @@ var CONFIG = {
 // DON'T EDIT FOLLOWING CODES
 // **************************
 Prism.languages.js = Prism.languages.javascript;
-addConfig(ditto, CONFIG);
-function addConfig(obj, conf) {
-  Object.keys(conf).forEach(function(key) {
-    obj[key] = conf[key];
-  });
-}
+Object.assign(ditto, CONFIG);
 
 ditto.run();
