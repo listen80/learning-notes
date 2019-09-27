@@ -1,33 +1,6 @@
 require("./app.css");
-
-var ditto = {
-  // page element ids
-  content_id: "#content",
-  sidebar_id: "#sidebar",
-  edit_id: "#edit",
-  back_to_top_id: "#back_to_top",
-  loading_id: "#loading",
-  error_id: "#error",
-
-  // display elements
-  sidebar: true,
-  edit_button: true,
-  back_to_top_button: true,
-  save_progress: true, // 保存阅读进度
-  search_bar: true,
-
-  // initialize function
-  run: initialize,
-  document_title: "学习笔记",
-
-  // index page
-  index: "README.md",
-
-  // sidebar file
-
-  // where the docs are actually stored on github - so you can edit
-  base_url: "https://github.com/ruanyf/es6tutorial/edit/gh-pages"
-};
+require('./sidenav')
+var ditto = require('./config.js')
 
 /**
  * 获取当前hash
@@ -68,67 +41,7 @@ function initialize() {
 }
 
 function init_sidebar_section() {
-  $.get("sidebar.json", function(data) {
-    function createSideBar(data, deep) {
-      deep = deep || 1;
-      return data
-        .map(function(item) {
-          if (item.children) {
-            return `<div><h${deep}>${
-              item.path
-                ? `<a href="#${item.path}">${item.title}</a>`
-                : item.title
-            }</h${deep}>${createSideBar(item.children, deep + 1)}</div>`;
-          } else if (item.title) {
-            return `<div><a href="#${item.path}">${item.title}</a></div>`;
-          } else {
-            return "";
-          }
-        })
-        .join("");
-    }
-    var html = Object.values(data).map(function(data) {
-      return createSideBar(data);
-    });
-    console.log(html);
-    var header = Object.keys(data)
-      .map(function(data) {
-        return `<li><a href="#${data}/">${data}</a></li>`;
-      })
-      .join("");
-
-    $("header").append(`<ol class="nav navbar-nav">${header}</ol>`);
-    $(ditto.sidebar_id + " aside").append(html);
-
-    if (ditto.search_bar) {
-    }
-
-    // 初始化内容数组
-    var menuOL = $(ditto.sidebar_id + " ol");
-    menuOL.attr("start", 0);
-
-    menuOL.find("li a").map(function() {
-      menu.push(this.href.slice(this.href.indexOf("#")));
-    });
-    $("#pageup").on("click", function() {
-      var hash = getHash().nav;
-      for (var i = 0; i < menu.length; i++) {
-        if (hash === "") break;
-        if (menu[i] === "#" + hash) break;
-      }
-      location.hash = menu[i - 1];
-    });
-    $("#pagedown").on("click", function() {
-      var hash = getHash().nav;
-      for (var i = 0; i < menu.length; i++) {
-        if (hash === "") break;
-        if (menu[i] === "#" + hash) break;
-      }
-      location.hash = menu[i + 1];
-    });
-  }).fail(function() {
-    alert("Opps! can't find the sidebar file to display!");
-  });
+  
 }
 
 function init_back_to_top_button() {
@@ -224,7 +137,7 @@ function create_page_anchors() {
   // create page anchors by matching li's to headers
   // if there is a match, create click listeners
   // and scroll to relevant sections
-
+  return;
   // go through header level 1 to 3
   for (var i = 2; i <= 4; i++) {
     // parse all headers
@@ -357,11 +270,10 @@ function router() {
 
     document.title =
       $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
-    create_page_anchors();
+    // create_page_anchors();
 
     // 完成代码高亮
     $("#content pre code").map(function() {
-      Prism.languages.js = Prism.languages.javascript;
       Prism.highlightElement(this);
     });
 

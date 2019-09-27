@@ -121,7 +121,8 @@ header {
   z-index: 1;
 }
 header ol {
-  background: rgba(86, 102, 141, 1);
+  /* background: rgba(86, 102, 141, 1); */
+  border-bottom: 2px solid rgba(86, 102, 141, 1); 
   width: 100%;
   margin: 0;
   padding: 0;

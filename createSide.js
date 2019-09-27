@@ -34,8 +34,10 @@ const getDir = (dir, baseUrl = []) => {
 
 const modules = Object.create(null);
 
-["javascript", "协议", "Chatting"].forEach(function (module) {
-  modules[module] = getDir(path.join(__dirname, "docs", module), [module])
+["JavaScript", "协议", "安全", "数据结构", "算法", "Chatting"].forEach(function(
+  module
+) {
+  modules[module] = getDir(path.join(__dirname, "docs", module), [module]);
 });
 
 let sidebar = getDir(path.join(__dirname, "docs", "javascript"));

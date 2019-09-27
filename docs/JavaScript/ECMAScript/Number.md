@@ -31,8 +31,6 @@ Object.getOwnPropertyNames(Number);
 ];
 ```
 
-## 属性
-
 ### MAX_VALUE, MIN_VALUE
 
 ```js

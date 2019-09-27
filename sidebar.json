@@ -1,43 +1,43 @@
 {
-  "javascript": [
+  "JavaScript": [
     {
       "title": "ECMAScript",
       "children": [
         {
           "title": "Array",
-          "path": "javascript/ECMAScript/Array"
+          "path": "JavaScript/ECMAScript/Array"
         },
         {
           "title": "Date",
-          "path": "javascript/ECMAScript/Date"
+          "path": "JavaScript/ECMAScript/Date"
         },
         {
           "title": "Error",
-          "path": "javascript/ECMAScript/Error"
+          "path": "JavaScript/ECMAScript/Error"
         },
         {
           "title": "Function",
-          "path": "javascript/ECMAScript/Function"
+          "path": "JavaScript/ECMAScript/Function"
         },
         {
           "title": "Number",
-          "path": "javascript/ECMAScript/Number"
+          "path": "JavaScript/ECMAScript/Number"
         },
         {
           "title": "Object",
-          "path": "javascript/ECMAScript/Object"
+          "path": "JavaScript/ECMAScript/Object"
         },
         {
           "title": "RegExp",
-          "path": "javascript/ECMAScript/RegExp"
+          "path": "JavaScript/ECMAScript/RegExp"
         },
         {
           "title": "String",
-          "path": "javascript/ECMAScript/String"
+          "path": "JavaScript/ECMAScript/String"
         },
         {
           "title": "Symbol",
-          "path": "javascript/ECMAScript/Symbol"
+          "path": "JavaScript/ECMAScript/Symbol"
         }
       ],
       "path": ""
@@ -47,27 +47,27 @@
       "children": [
         {
           "title": "call",
-          "path": "javascript/practices/call"
+          "path": "JavaScript/practices/call"
         },
         {
           "title": "instanceof",
-          "path": "javascript/practices/instanceof"
+          "path": "JavaScript/practices/instanceof"
         },
         {
           "title": "RegExp",
-          "path": "javascript/practices/RegExp"
+          "path": "JavaScript/practices/RegExp"
         },
         {
           "title": "sqrt",
-          "path": "javascript/practices/sqrt"
+          "path": "JavaScript/practices/sqrt"
         },
         {
           "title": "typeof",
-          "path": "javascript/practices/typeof"
+          "path": "JavaScript/practices/typeof"
         },
         {
           "title": "数组乱序",
-          "path": "javascript/practices/数组乱序"
+          "path": "JavaScript/practices/数组乱序"
         }
       ],
       "path": ""
@@ -77,15 +77,15 @@
       "children": [
         {
           "title": "jQuery",
-          "path": "javascript/框架/jQuery"
+          "path": "JavaScript/框架/jQuery"
         },
         {
           "title": "React",
-          "path": "javascript/框架/React"
+          "path": "JavaScript/框架/React"
         },
         {
           "title": "Vue",
-          "path": "javascript/框架/Vue"
+          "path": "JavaScript/框架/Vue"
         }
       ],
       "path": ""
@@ -99,6 +99,36 @@
     {
       "title": "HTTP2",
       "path": "协议/HTTP2"
+    }
+  ],
+  "安全": [
+    {
+      "title": "CSRF",
+      "path": "安全/CSRF"
+    },
+    {
+      "title": "ReplayAttacks",
+      "path": "安全/ReplayAttacks"
+    },
+    {
+      "title": "XSS",
+      "path": "安全/XSS"
+    }
+  ],
+  "数据结构": [
+    {
+      "title": "线性结构",
+      "path": "数据结构/线性结构"
+    }
+  ],
+  "算法": [
+    {
+      "title": "find",
+      "path": "算法/find"
+    },
+    {
+      "title": "sort",
+      "path": "算法/sort"
     }
   ],
   "Chatting": [
