@@ -8,10 +8,37 @@
 Array(2 ** 32); // Uncaught RangeError
 ```
 
+## 属性
+
+### Array.from
+
+```js
+Array.from("hello world");
+// ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+
+let s = new Set(["foo", window]);
+Array.from(s);
+// ["foo", window]
+
+let m = new Map([[1, 2], [2, 4], [4, 8]]);
+Array.from(m);
+// [[1, 2], [2, 4], [4, 8]]
+
+function f() {
+  return Array.from(arguments);
+}
+
+f(1, 2, 3);
+
+// [1, 2, 3]
+
+Array.from([1, 2, 3], x => x ** x);
+```
+
 ### of
 
 ```js
-Array.of(2,3,4, [2,3,2, [{}, 4]])
+Array.of(2, 3, 4, [2, 3, 2, [{}, 4]]);
 ```
 
 ### map
