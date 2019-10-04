@@ -40,6 +40,4 @@ const modules = Object.create(null);
   modules[module] = getDir(path.join(__dirname, "docs", module), [module]);
 });
 
-let sidebar = getDir(path.join(__dirname, "docs", "javascript"));
-
 fs.writeFileSync("sidebar.json", JSON.stringify(modules, null, 2));

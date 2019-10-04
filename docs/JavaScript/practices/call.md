@@ -8,7 +8,6 @@
 
 ```js
 Function.prototype._call = function(context = window, ...args) {
-  debugger;
   if (this === Function.prototype) {
     return undefined; // 用于防止 Function.prototype._call() 直接调用
   }
@@ -21,8 +20,7 @@ Function.prototype._call = function(context = window, ...args) {
 };
 
 function a(argument) {
-  debugger;
-}
+w}
 b = a.call;
 // b({a:3}, 2,3,4)
 ```

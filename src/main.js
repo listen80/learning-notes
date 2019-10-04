@@ -1,15 +1,9 @@
 require("./app.css");
-require('./sidenav')
-var ditto = require('./config.js')
+require("./sidenav");
 
-/**
- * 获取当前hash
- *
- * @param {string} hash 要解析的hash，默认取当前页面的hash，如： nav#类目 ===== {nav:nav, anchor:类目}
- * @description 分导航和页面锚点
- * @return {Object} {nav:导航, anchor:页面锚点}
- */
+var ditto = require("./config.js");
 
+var article = $('article');
 var sperate = "@";
 var getHash = function(hash) {
   hash = hash || window.location.hash.substr(1);
@@ -28,37 +22,7 @@ var getHash = function(hash) {
   };
 };
 
-var disqusCode = '<h3>留言</h3><div id="disqus_thread"></div>';
 var menu = new Array();
-
-function initialize() {
-  // initialize sidebar and buttons
-  if (ditto.sidebar) {
-    init_sidebar_section();
-  }
-  router();
-  $(window).on("hashchange", router);
-}
-
-function init_sidebar_section() {
-  
-}
-
-function init_back_to_top_button() {
-  $(ditto.back_to_top_id).show();
-  $(ditto.back_to_top_id).on("click", goTop);
-}
-
-function goTop(e) {
-  if (e) e.preventDefault();
-  $("html, body").animate(
-    {
-      scrollTop: 0
-    },
-    200
-  );
-  history.pushState(null, null, "#" + location.hash.split("#")[1]);
-}
 
 function goSection(sectionId) {
   $("html, body").animate(
@@ -67,27 +31,6 @@ function goSection(sectionId) {
     },
     300
   );
-}
-
-function init_edit_button() {
-  if (ditto.base_url === null) {
-    alert("Error! You didn't set 'base_url' when calling ditto.run()!");
-  } else {
-    $(ditto.edit_id).show();
-    $(ditto.edit_id).on("click", function() {
-      var hash = location.hash.replace("#", "/");
-      if (/#.*$/.test(hash)) {
-        hash = hash.replace(/#.*$/, "");
-      }
-      if (hash === "") {
-        hash = "/" + ditto.index.replace(".md", "");
-      }
-
-      window.open(ditto.base_url + hash + ".md");
-      // open is better than redirecting, as the previous page history
-      // with redirect is a bit messed up
-    });
-  }
 }
 
 function replace_symbols(text) {
@@ -108,8 +51,8 @@ function li_create_linkage(li_tag, header_level) {
   li_tag.click(function(e) {
     e.preventDefault();
     // scroll to relevant section
-    var header = $(
-      ditto.content_id + " h" + header_level + "." + li_tag.attr("data-src")
+    var header = article.find(
+      "h" + header_level + "." + li_tag.attr("data-src")
     );
     $("html, body").animate(
       {
@@ -124,7 +67,6 @@ function li_create_linkage(li_tag, header_level) {
       // revert back to orig color
       $(this).animate({ color: original_color }, 2500);
     });
-    debugger;
     history.pushState(
       null,
       null,
@@ -137,7 +79,6 @@ function create_page_anchors() {
   // create page anchors by matching li's to headers
   // if there is a match, create click listeners
   // and scroll to relevant sections
-  return;
   // go through header level 1 to 3
   for (var i = 2; i <= 4; i++) {
     // parse all headers
@@ -199,7 +140,7 @@ function create_page_anchors() {
 
 function normalize_paths() {
   // images
-  $(ditto.content_id + " img").map(function() {
+  article.find("img").map(function() {
     var src = $(this)
       .attr("src")
       .replace("./", "");
@@ -219,25 +160,6 @@ function normalize_paths() {
       $(this).attr("src", pathname + base_dir + "/" + src);
     }
   });
-}
-
-function show_error() {
-  console.log("SHOW ERORR!");
-  $(ditto.error_id).show();
-}
-
-function show_loading() {
-  $(ditto.loading_id).show();
-  $(ditto.content_id).html(""); // clear content
-
-  // infinite loop until clearInterval() is called on loading
-  var loading = setInterval(function() {
-    $(ditto.loading_id)
-      .fadeIn(1000)
-      .fadeOut(1000);
-  }, 2000);
-
-  return loading;
 }
 
 function router() {
@@ -260,20 +182,18 @@ function router() {
     }
   }
   var pathArr = ["./docs/", path];
-
-  $(ditto.content_id).html("Loading ...");
+  article.html("Loading ...");
   $.get(pathArr.join(""), function(data) {
     var nav = `<div id="flip">
       <span id="pageup">上一章</span><span id="pagedown">下一章</span>
     </div>`;
-    $(ditto.content_id).html(marked(data) + nav);
+    article.html(marked(data) + nav);
 
-    document.title =
-      $(ditto.content_id + " h1").text() + " - " + ditto.document_title;
+    document.title = article.find("h1").text() + " - " + ditto.document_title;
     // create_page_anchors();
 
     // 完成代码高亮
-    $("#content pre code").map(function() {
+    article.find("pre code").map(function() {
       Prism.highlightElement(this);
     });
 
@@ -325,10 +245,9 @@ function router() {
       $("#pagedown").css("display", "inline-block");
     }
   }).fail(function() {
-    $(ditto.content_id).html("Oops! ... File not found!");
+    article.html("Oops! ... File not found!");
   });
 }
 
-Prism.languages.js = Prism.languages.javascript;
-
-initialize();
+router();
+$(window).on("hashchange", router);

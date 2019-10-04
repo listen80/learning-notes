@@ -1,0 +1,54 @@
+image {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+a:visited,
+a:link {
+  color: #4682be;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 0px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(86, 102, 141, 1);
+  cursor: pointer;
+  border-radius: 9px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+header {
+  height: 45px;
+  line-height: 45px;
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid rgba(86, 102, 141, 1);
+  z-index: 1;
+}
+
+article {
+  width: 666px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+}

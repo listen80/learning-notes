@@ -54,10 +54,6 @@
           "path": "JavaScript/practices/instanceof"
         },
         {
-          "title": "RegExp",
-          "path": "JavaScript/practices/RegExp"
-        },
-        {
           "title": "sqrt",
           "path": "JavaScript/practices/sqrt"
         },

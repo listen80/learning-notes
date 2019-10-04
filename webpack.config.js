@@ -7,9 +7,11 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var dist = path.resolve("./dist");
 
+require('./createSide')
+
 module.exports = {
   entry: {
-    index: "./public/main.js"
+    index: "./src/main.js"
   },
   output: {
     path: "dist",

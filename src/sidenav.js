@@ -1,4 +1,6 @@
+require("./aside.css");
 var ditto = require("./config.js");
+Prism.languages.js = Prism.languages.javascript;
 
 function createSideBar(data, deep = 1) {
   return data
@@ -6,9 +8,9 @@ function createSideBar(data, deep = 1) {
       if (item.children) {
         return `<div><h${deep}>${
           item.path ? `<a href="#${item.path}">${item.title}</a>` : item.title
-        }</h${deep}>${createSideBar(item.children, deep + 1)}</div>`;
+        }</h${deep}><ol>${createSideBar(item.children, deep + 1)}</ol></div>`;
       } else if (item.title) {
-        return `<div><a href="#${item.path}">${item.title}</a></div>`;
+        return `<li><a href="#${item.path}">${item.title}</a></li>`;
       } else {
         return "";
       }
@@ -18,7 +20,7 @@ function createSideBar(data, deep = 1) {
 
 function render(name) {
   var html = createSideBar(name);
-  $(ditto.sidebar_id + " aside").html(html);
+  $("aside").html(html);
 }
 
 $.get("sidebar.json", function(data) {
@@ -27,29 +29,31 @@ $.get("sidebar.json", function(data) {
       return `<li><a href="#${data}/" class="nav-link" data-link="${data}">${data}</a></li>`;
     })
     .join("");
-
   render(data["JavaScript"]);
+
   $("header").on("click", ".nav-link", function() {
-    debugger;
     render(data[$(this).data("link")]);
   });
-  $("header").append(`<ol class="nav navbar-nav">${header}</ol>`);
-  var menuOL = $(ditto.sidebar_id + " ol");
-  menuOL.attr("start", 0);
 
-  menuOL.find("li a").map(function() {
-    menu.push(this.href.slice(this.href.indexOf("#")));
-  });
+  $("header").append(`<div style="display: flex"><a href="./"><image src="public/portrait.jpg" height="100%"/></a><ol class="nav navbar-nav">${header}</ol></div>`);
+  // var menuOL = $(ditto.sidebar_id + " ol");
+  // // menuOL.attr("start", 0);
+  // menu = [];
+  // menuOL.find("li a").map(function() {
+  //   menu.push(this.href.slice(this.href.indexOf("#")));
+  // });
+
   $("#pageup").on("click", function() {
-    var hash = getHash().nav;
+    var hash = location.hash.split("@");
     for (var i = 0; i < menu.length; i++) {
       if (hash === "") break;
       if (menu[i] === "#" + hash) break;
     }
     location.hash = menu[i - 1];
   });
+
   $("#pagedown").on("click", function() {
-    var hash = getHash().nav;
+    var hash = location.hash.split("@");
     for (var i = 0; i < menu.length; i++) {
       if (hash === "") break;
       if (menu[i] === "#" + hash) break;
