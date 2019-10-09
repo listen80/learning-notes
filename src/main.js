@@ -29,7 +29,7 @@ $.get("sidebar.json", function(data) {
   $("header")
     .append(
       `<div style="display: flex">
-      <a href="./"><image src="public/portrait.jpg"/></a>
+      <a href="./"><image src="public/portrait.jpg" class="logo"/></a>
       <ol class="nav navbar-nav">
       ${Object.keys(data)
         .map(function(data) {
