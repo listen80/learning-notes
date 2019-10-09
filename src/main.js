@@ -3,15 +3,21 @@ require("./main.css");
 require("./article");
 
 $.get("sidebar.json", function(data) {
+  function createLink(item) {
+    return `${
+      item.path ? `<a href="#${item.path}">${item.title}</a>` : item.title
+    }`;
+  }
+
   function createSideBar(data, deep = 1) {
     return data
       .map(function(item) {
         if (item.children) {
-          return `<div><h${deep}>${
-            item.path ? `<a href="#${item.path}">${item.title}</a>` : item.title
-          }</h${deep}><ol>${createSideBar(item.children, deep + 1)}</ol></div>`;
+          return `<div>${createLink(item)}
+          <ol>${createSideBar(item.children, deep + 1)}</ol>
+          </div>`;
         } else if (item.title) {
-          return `<li><a href="#${item.path}">${item.title}</a></li>`;
+          return `<li>${createLink(item)}</li>`;
         } else {
           return "";
         }
@@ -19,7 +25,7 @@ $.get("sidebar.json", function(data) {
       .join("");
   }
 
-  function render(name) {
+  function renderSideBar(name) {
     var html = createSideBar(name);
     $("aside").html(html);
   }
@@ -43,7 +49,7 @@ $.get("sidebar.json", function(data) {
         .addClass("active")
         .siblings()
         .removeClass("active");
-      render(data[$(this).data("link")]);
+      renderSideBar(data[$(this).data("link")]);
     })
     .find("a")
     .eq(0)

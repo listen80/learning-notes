@@ -43,32 +43,6 @@
       "path": ""
     },
     {
-      "title": "practices",
-      "children": [
-        {
-          "title": "call",
-          "path": "前端/practices/call"
-        },
-        {
-          "title": "deepClone",
-          "path": "前端/practices/deepClone"
-        },
-        {
-          "title": "instanceof",
-          "path": "前端/practices/instanceof"
-        },
-        {
-          "title": "sqrt",
-          "path": "前端/practices/sqrt"
-        },
-        {
-          "title": "typeof",
-          "path": "前端/practices/typeof"
-        }
-      ],
-      "path": ""
-    },
-    {
       "title": "协议",
       "children": [
         {
@@ -122,8 +96,34 @@
       "title": "笔试题",
       "children": [
         {
-          "title": "ali",
-          "path": "前端/笔试题/ali"
+          "title": "阿里笔试1",
+          "path": "前端/笔试题/阿里笔试1"
+        }
+      ],
+      "path": ""
+    },
+    {
+      "title": "练习题",
+      "children": [
+        {
+          "title": "call",
+          "path": "前端/练习题/call"
+        },
+        {
+          "title": "deepClone",
+          "path": "前端/练习题/deepClone"
+        },
+        {
+          "title": "instanceof",
+          "path": "前端/练习题/instanceof"
+        },
+        {
+          "title": "sqrt",
+          "path": "前端/练习题/sqrt"
+        },
+        {
+          "title": "typeof",
+          "path": "前端/练习题/typeof"
         }
       ],
       "path": ""
