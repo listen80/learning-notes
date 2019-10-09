@@ -62,15 +62,21 @@ aside {
   box-shadow: 1px 0px 3px #ccc;
 }
 
+header > div {
+  display: flex;
+}
+
 header ol {
   /* background: rgba(86, 102, 141, 1); */
 
   width: 100%;
   margin: 0;
   padding: 0;
+  display: flex
 }
 header li {
-  display: inline-block;
+  /* display: inline-block; */
+  list-style: none;
 }
 
 /* .nav.navbar-nav {

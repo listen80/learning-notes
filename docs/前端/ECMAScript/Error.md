@@ -1,6 +1,6 @@
 # Error
 
-## 数组的扩展
+## 常见 js 错误
 
 ### Error(base)
 
@@ -10,7 +10,16 @@ throw new Error("msg", "fileName", "lineNumber");
 
 ### EvalError
 
-error
+```js
+try {
+  throw new EvalError("Hello");
+} catch (e) {
+  console.log(e instanceof EvalError); // true
+  console.log(e.message); // "Hello"
+  console.log(e.name); // "EvalError"
+  console.log(e.stack); // "@Scratchpad/2:2:9\n"
+}
+```
 
 ### RangeError
 

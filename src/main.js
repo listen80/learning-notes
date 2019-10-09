@@ -24,16 +24,14 @@ $.get("sidebar.json", function(data) {
     $("aside").html(html);
   }
 
-  render(data["JavaScript"]);
-
   $("header")
     .append(
-      `<div style="display: flex">
+      `<div>
       <a href="./"><image src="public/portrait.jpg" class="logo"/></a>
       <ol class="nav navbar-nav">
       ${Object.keys(data)
         .map(function(data) {
-          return `<li><a href="#${data}/" class="nav-link" data-link="${data}">${data}</a></li>`;
+          return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
         })
         .join("")}
       </ol>
@@ -46,5 +44,8 @@ $.get("sidebar.json", function(data) {
         .siblings()
         .removeClass("active");
       render(data[$(this).data("link")]);
-    });
+    })
+    .find("a")
+    .eq(0)
+    .trigger("click");
 });
