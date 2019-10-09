@@ -4,7 +4,9 @@
 
 ### Error(base)
 
-error
+```js
+throw new Error("msg", "fileName", "lineNumber");
+```
 
 ### EvalError
 
@@ -12,20 +14,57 @@ error
 
 ### RangeError
 
-error
+```js
+throw RangeError();
+
+function next() {
+  next();
+}
+
+try {
+  next();
+} catch (e) {
+  e instanceof RangeError; // true
+}
+```
 
 ### ReferenceError
 
-error
+```js
+try {
+  undefined_var;
+} catch (e) {
+  e instanceof ReferenceError; // true
+}
+```
 
 ### SyntaxError
 
-error
+```js
+try {
+  eval(",");
+} catch (e) {
+  e instanceof SyntaxError; // true
+}
+```
 
 ### TypeError
 
-error
+```js
+try {
+  var a = 1;
+  a();
+} catch (e) {
+  e instanceof TypeError; // true
+}
+```
 
 ### URIErro
 
-error
+```js
+try {
+  decodeURI("%1");
+} catch (e) {
+  e instanceof URIErro; // true
+}
+```
