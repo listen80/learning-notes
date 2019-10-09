@@ -35,10 +35,17 @@ f(1, 2, 3);
 Array.from([1, 2, 3], x => x ** x);
 ```
 
-### of
+### Array.of
 
 ```js
 Array.of(2, 3, 4, [2, 3, 2, [{}, 4]]);
+```
+
+### Array.isArray
+
+```js
+Array.isArray(2);
+Array.isArray([]);
 ```
 
 ### map

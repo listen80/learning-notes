@@ -1,7 +1,56 @@
 # Function
 
-## 属性
+## 自身
 
 ```js
-Object.getOwnPropertyNames(Function)
+Object.getOwnPropertyNames(Function);
+["length", "name", "constructor"];
+```
+
+### constructor
+
+```js
+Function.constructor === Function; // true
+```
+
+## 原型
+
+```js
+Object.getOwnPropertyNames(Function.prototype);
+[
+  "length",
+  "name",
+  "arguments",
+  "caller",
+  "constructor",
+  "apply",
+  "bind",
+  "call",
+  "toString"
+];
+```
+
+### arguments
+
+```js
+```
+
+### caller
+
+```js
+```
+
+### bind
+
+```js
+```
+
+### call
+
+```js
+```
+
+### toString
+
+```js
 ```

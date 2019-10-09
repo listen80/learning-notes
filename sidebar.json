@@ -50,6 +50,10 @@
           "path": "JavaScript/practices/call"
         },
         {
+          "title": "deepClone",
+          "path": "JavaScript/practices/deepClone"
+        },
+        {
           "title": "instanceof",
           "path": "JavaScript/practices/instanceof"
         },
@@ -60,10 +64,6 @@
         {
           "title": "typeof",
           "path": "JavaScript/practices/typeof"
-        },
-        {
-          "title": "数组乱序",
-          "path": "JavaScript/practices/数组乱序"
         }
       ],
       "path": ""

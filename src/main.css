@@ -1,8 +1,11 @@
-image {
+img {
   max-height: 100%;
   max-width: 100%;
 }
-
+.logo {
+  width: 45px;
+  height: 45px;
+}
 a:visited,
 a:link {
   color: #4682be;
@@ -51,4 +54,29 @@ article {
   margin: 0 auto;
   padding: 20px;
   overflow: auto;
+}
+
+aside {
+  padding: 10px;
+  width: 220px;
+  box-shadow: 1px 0px 3px #ccc;
+}
+
+header ol {
+  /* background: rgba(86, 102, 141, 1); */
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+header li {
+  display: inline-block;
+}
+
+/* .nav.navbar-nav {
+  position: fixed;
+} */
+
+.nav li {
+  padding: 0 10px;
 }
