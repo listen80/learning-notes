@@ -85,6 +85,16 @@
         }
       ],
       "path": ""
+    },
+    {
+      "title": "笔试题",
+      "children": [
+        {
+          "title": "ali",
+          "path": "JavaScript/笔试题/ali"
+        }
+      ],
+      "path": ""
     }
   ],
   "协议": [
@@ -125,30 +135,6 @@
     {
       "title": "sort",
       "path": "算法/sort"
-    }
-  ],
-  "Chatting": [
-    {
-      "title": "Docker",
-      "path": "Chatting/Docker"
-    },
-    {
-      "title": "云服务器",
-      "path": "Chatting/云服务器"
-    },
-    {
-      "title": "云计算",
-      "path": "Chatting/云计算"
-    },
-    {
-      "title": "笔试题",
-      "children": [
-        {
-          "title": "ali",
-          "path": "Chatting/笔试题/ali"
-        }
-      ],
-      "path": ""
     }
   ]
 }
