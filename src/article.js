@@ -1,30 +1,4 @@
-var ditto = {
-  // page element ids
-  content_id: "#content",
-  sidebar_id: "#sidebar",
-  edit_id: "#edit",
-  back_to_top_id: "#back_to_top",
-  loading_id: "#loading",
-  error_id: "#error",
-
-  // display elements
-  sidebar: true,
-  edit_button: true,
-  back_to_top_button: true,
-  save_progress: true, // 保存阅读进度
-  search_bar: true,
-
-  // initialize function
-  document_title: "学习笔记",
-
-  // index page
-  index: "README.md",
-
-  // sidebar file
-
-  // where the docs are actually stored on github - so you can edit
-  base_url: "https://github.com/ruanyf/es6tutorial/edit/gh-pages"
-};
+require("./article.css");
 
 Prism.languages.js = Prism.languages.javascript;
 
@@ -193,36 +167,29 @@ function normalize_paths() {
 
 function router() {
   var hashArr = location.hash.substr(1).split(sperate);
-  var sectionId;
 
   if (localStorage.getItem("menu-progress") !== location.hash) {
     localStorage.setItem("menu-progress", location.hash);
     localStorage.setItem("page-progress", 0);
   }
   path = hashArr[0];
-
   if (path === "") {
-    path = ditto.index;
+    path = "README.md";
   } else {
     if (path.match(/\/$/)) {
-      path += ditto.index;
+      path += "README.md";
     } else {
       path = path + ".md";
     }
+    path = `./docs/${path}`;
   }
-  var pathArr = ["./docs/", path];
   article.html("Loading ...");
-
-  $.get(pathArr.join(""), function(data) {
-    var nav = `<div id="flip">
-      <span id="pageup">上一章</span><span id="pagedown">下一章</span>
-    </div>`;
+  $.get(path, function(data) {
+    var nav = `<div id="flip"><span id="pageup">上一章</span><span id="pagedown">下一章</span></div>`;
     article.html(marked(data) + nav);
 
-    document.title = article.find("h1").text() + " - " + ditto.document_title;
-    // create_page_anchors();
+    document.title = article.find("h1").text() + " - " + "学习笔记";
 
-    // 完成代码高亮
     article.find("pre code").map(function() {
       Prism.highlightElement(this);
     });
