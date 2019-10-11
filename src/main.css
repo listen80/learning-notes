@@ -1,6 +1,5 @@
 img {
   max-height: 100%;
-  /* max-width: 100%; */
 }
 .logo {
   width: 45px;
@@ -67,22 +66,14 @@ header > div {
 }
 
 header ol {
-  /* background: rgba(86, 102, 141, 1); */
-
   width: 100%;
   margin: 0;
   padding: 0;
-  display: flex
+  display: flex;
 }
 header li {
-  /* display: inline-block; */
   list-style: none;
 }
-
-/* .nav.navbar-nav {
-  position: fixed;
-} */
-
 .nav li {
   padding: 0 10px;
 }

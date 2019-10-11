@@ -6,23 +6,6 @@
   "scripts": {
     "dev": "node createSide"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "clean-webpack-plugin": "^0.1.16",
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.23.0",
-    "extract-text-webpack-plugin": "^1.0.0",
-    "file-loader": "^0.11.2",
-    "html-webpack-plugin": "^2.0.0",
-    "style-loader": "^0.13.0",
-    "url-loader": "^0.5.9",
-    "webpack": "^1.12.15",
-    "webpack-uploadfiles-plugin": "^1.0.0"
-  },
-  "dependencies": {
-    "babel": "^6",
-    "babel-core": "^6",
-    "babel-loader": "^6"
-  }
+  "author": "listen80",
+  "license": "ISC"
 }

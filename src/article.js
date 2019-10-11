@@ -1,5 +1,3 @@
-// require("./article.css");
-
 Prism.languages.js = Prism.languages.javascript;
 
 var article = $("article").on("click", "h1, h2", function() {
@@ -8,22 +6,6 @@ var article = $("article").on("click", "h1, h2", function() {
 });
 
 var sperate = "@";
-var getHash = function(hash) {
-  hash = hash || window.location.hash.substr(1);
-
-  if (!hash) {
-    return {
-      nav: "",
-      anchor: ""
-    };
-  }
-
-  hash = hash.split("#");
-  return {
-    nav: hash[0],
-    anchor: decodeURIComponent(hash[1] || "")
-  };
-};
 
 var menu = new Array();
 
@@ -64,7 +46,6 @@ function li_create_linkage(li_tag, header_level) {
       200
     );
 
-    // highlight the relevant section
     original_color = header.css("color");
     header.animate({ color: "#ED1C24" }, 500, function() {
       // revert back to orig color
@@ -141,37 +122,8 @@ function create_page_anchors() {
   }
 }
 
-function normalize_paths() {
-  // images
-  article.find("img").map(function() {
-    var src = $(this)
-      .attr("src")
-      .replace("./", "");
-    if (
-      $(this)
-        .attr("src")
-        .slice(0, 4) !== "http"
-    ) {
-      var pathname = location.pathname.substr(0, location.pathname.length - 1);
-      var url = location.hash.replace("#", "");
-
-      // split and extract base dir
-      url = url.split("/");
-      var base_dir = url.slice(0, url.length - 1).toString();
-
-      // normalize the path (i.e. make it absolute)
-      $(this).attr("src", pathname + base_dir + "/" + src);
-    }
-  });
-}
-
 function router() {
   var hashArr = location.hash.substr(1).split(sperate);
-
-  if (localStorage.getItem("menu-progress") !== location.hash) {
-    localStorage.setItem("menu-progress", location.hash);
-    localStorage.setItem("page-progress", 0);
-  }
   path = hashArr[0];
   if (path === "") {
     path = "README.md";
@@ -199,4 +151,4 @@ function router() {
 }
 
 router();
-$(window).on("hashchange", router);
+// $(window).on("hashchange", router);

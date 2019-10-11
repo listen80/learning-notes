@@ -32,7 +32,7 @@ $.get("sidebar.json", function(data) {
       <a href="./"><image src="public/portrait.jpg" class="logo"/></a>
       <ol class="nav navbar-nav">
       ${Object.keys(data)
-        .map(function(data) {
+        .map(function(data) {``
           return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
         })
         .join("")}
