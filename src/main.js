@@ -1,6 +1,6 @@
-require("./main.css");
+// require("./main.css");
 
-require("./article");
+// require("./article");
 
 $.get("sidebar.json", function(data) {
   function createLink(item) {

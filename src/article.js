@@ -1,4 +1,4 @@
-require("./article.css");
+// require("./article.css");
 
 Prism.languages.js = Prism.languages.javascript;
 
