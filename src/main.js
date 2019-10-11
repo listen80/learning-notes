@@ -1,7 +1,3 @@
-// require("./main.css");
-
-// require("./article");
-
 $.get("sidebar.json", function(data) {
   function createLink(item) {
     return `${
