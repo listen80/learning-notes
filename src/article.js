@@ -122,33 +122,29 @@ function create_page_anchors() {
   }
 }
 
-function router() {
-  var hashArr = location.hash.substr(1).split(sperate);
-  path = hashArr[0];
-  if (path === "") {
-    path = "README.md";
+var hashArr = location.hash.substr(1).split(sperate);
+path = hashArr[0];
+if (path === "") {
+  path = "README.md";
+} else {
+  if (path.match(/\/$/)) {
+    path += "README.md";
   } else {
-    if (path.match(/\/$/)) {
-      path += "README.md";
-    } else {
-      path = path + ".md";
-    }
-    path = `./docs/${path}`;
+    path = path + ".md";
   }
-  article.html("Loading ...");
-  $.get(path, function(data) {
-    var nav = `<div id="flip"><span id="pageup">上一章</span><span id="pagedown">下一章</span></div>`;
-    article.html(marked(data) + nav);
-
-    document.title = article.find("h1").text() + " - " + "学习笔记";
-
-    article.find("pre code").map(function() {
-      Prism.highlightElement(this);
-    });
-  }).fail(function() {
-    article.html("Oops! ... File not found!");
-  });
+  path = `./docs/${path}`;
 }
 
-router();
-// $(window).on("hashchange", router);
+article.html("Loading ...");
+$.get(path, function(data) {
+  var nav = `<div class="flip"><span class="pageup">上一章</span><span class="pagedown">下一章</span></div>`;
+  article.html(marked(data) + nav);
+
+  document.title = article.find("h1").text() + " - " + "学习笔记";
+
+  article.find("pre code").map(function() {
+    Prism.highlightElement(this);
+  });
+}).fail(function() {
+  article.html("Oops! ... File not found!");
+});
