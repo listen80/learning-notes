@@ -1,9 +1,16 @@
 Prism.languages.js = Prism.languages.javascript;
 
-var article = $("article").on("click", "h1, h2", function() {
-  window.location.hash =
-    window.location.hash.split("@")[0] + "@" + $(this).attr("id");
-});
+var article = $("article")
+  .on("click", "h1, h2", function() {
+    window.location.hash =
+      window.location.hash.split("@")[0] + "@" + $(this).attr("id");
+  })
+  .on("click", ".pageNext", function() {
+    console.log('next');
+  })
+  .on("click", ".pagePrev", function() {
+    console.log('prev')
+  });
 
 var sperate = "@";
 
@@ -137,7 +144,7 @@ if (path === "") {
 
 article.html("Loading ...");
 $.get(path, function(data) {
-  var nav = `<div class="flip"><span class="pageup">上一章</span><span class="pagedown">下一章</span></div>`;
+  var nav = `<div class="flip"><span class="pagePrev">上一章</span><span class="pageNext">下一章</span></div>`;
   article.html(marked(data) + nav);
 
   document.title = article.find("h1").text() + " - " + "学习笔记";
