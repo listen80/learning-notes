@@ -35,6 +35,20 @@
 "123122".match(/1(?!23)/); // ["3", index: 0, input: "123122", groups: undefined]
 ```
 
+## i,g,m
+
+### ignore case
+
+无视大小写
+
+### g
+
+全部匹配
+
+### m
+
+换行
+
 ## 问题
 
 ```js
@@ -43,6 +57,8 @@
 
 // 反向匹配
 /(\w\1\1\1\1)/.exec("what"); // ["w", "w", index: 0, input: "what", groups: undefined]
+// 上面应该报错才合理
+/(\w)/.exec("what"); // ["w", "w", index: 0, input: "what", groups: undefined]
 ```
 
 [参考链接](http://www.regexlab.com/zh/regref.htm)
