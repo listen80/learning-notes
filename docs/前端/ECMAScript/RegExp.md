@@ -43,7 +43,8 @@
 
 ### g
 
-全部匹配
+全部匹配，会将正则匹配到的所有的，非$1, $2
+String.prototype.replace 不会产生匹配结果变化
 
 ### m
 
@@ -59,6 +60,14 @@
 /(\w\1\1\1\1)/.exec("what"); // ["w", "w", index: 0, input: "what", groups: undefined]
 // 上面应该报错才合理
 /(\w)/.exec("what"); // ["w", "w", index: 0, input: "what", groups: undefined]
+```
+
+## 范例
+
+```js
+var str = "(Is is the cost of of gasoline going up up";
+var patt1 = /\b([a-z]+) \1\b/gi;
+console.log(str.match(patt1)); // ["Is is", "of of", "up up"]
 ```
 
 [参考链接](http://www.regexlab.com/zh/regref.htm)
