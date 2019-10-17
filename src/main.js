@@ -4,9 +4,14 @@ $.get("sidebar.json", function(data) {
   $("article").on("click", ".flip span", function() {
     if ($(this).hasClass("pageNext")) {
       var index = menu.findIndex(function(item) {
-        location.hash.slice(1).split("@") === item.path;
+        return location.hash.slice(1).split("@")[0] === item.path;
       });
-      location.hash = menu[index + 1].path;
+      if (~index) {
+        var item = menu[index + 1];
+        if (item) {
+          location.hash = item.path;
+        }
+      }
     }
   });
 

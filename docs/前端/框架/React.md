@@ -1,5 +1,4 @@
-# jQuery
+# React
 
-## 选择器
+## React
 
-## 类jQuery库

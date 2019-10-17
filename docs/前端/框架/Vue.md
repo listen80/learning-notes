@@ -1,5 +1,4 @@
-# jQuery
+# vue
 
-## 选择器
+## vue
 
-## 类jQuery库
