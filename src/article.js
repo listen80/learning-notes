@@ -27,7 +27,7 @@ function getArticle() {
     path = `./docs/${path}`;
   }
 
-  article.html("Loading ...");
+  article.html('<p class="message">Loading ...</p>');
 
   $.get(path, function(data) {
     var nav = `<div class="flip"><span class="pagePrev">上一章</span><span class="pageNext">下一章</span></div>`;
@@ -39,7 +39,7 @@ function getArticle() {
       });
     document.title = article.find("h1").text() + " - " + "学习笔记";
   }).fail(function() {
-    article.html("Oops! ... File not found!");
+    article.html('<p class="message">Oops! ... File not found!</p>');
   });
 }
 

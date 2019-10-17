@@ -77,3 +77,7 @@ header li {
 .nav li {
   padding: 0 10px;
 }
+.message {
+  text-align: center;
+  margin-top: 5em;
+}
