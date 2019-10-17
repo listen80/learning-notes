@@ -1,8 +1,22 @@
 $.get("sidebar.json", function(data) {
+  var menu = [];
+
+  $("article").on("click", ".flip span", function() {
+    if ($(this).hasClass("pageNext")) {
+      var index = menu.findIndex(function(item) {
+        location.hash.slice(1).split("@") === item.path;
+      });
+      location.hash = menu[index + 1].path;
+    }
+  });
+
   function createLink(item) {
-    return `${
-      item.path ? `<a href="#${item.path}">${item.title}</a>` : item.title
-    }`;
+    if (item.path) {
+      menu = menu.concat(item);
+      return `<a href="#${item.path}">${item.title}</a>`;
+    } else {
+      return item.title;
+    }
   }
 
   function createSideBar(data, deep = 1) {
@@ -23,6 +37,7 @@ $.get("sidebar.json", function(data) {
 
   function renderSideBar(name) {
     var html = createSideBar(name);
+    console.log(menu);
     $("aside").html(html);
   }
 
@@ -32,7 +47,8 @@ $.get("sidebar.json", function(data) {
       <a href="./"><image src="public/portrait.jpg" class="logo"/></a>
       <ol class="nav navbar-nav">
       ${Object.keys(data)
-        .map(function(data) {``
+        .map(function(data) {
+          ``;
           return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
         })
         .join("")}

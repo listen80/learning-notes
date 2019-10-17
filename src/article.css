@@ -18,3 +18,15 @@ article h3 {
 article p {
   text-indent: 2em;
 }
+
+.flip {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flip span {
+  background: rgba(86, 102, 141, 1);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+}
