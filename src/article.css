@@ -15,10 +15,6 @@ article h3 {
   margin-top: 3em;
 }
 
-article p {
-  /* text-indent: 2em; */
-}
-
 .flip {
   display: flex;
   justify-content: space-evenly;
