@@ -29,18 +29,20 @@ function getArticle() {
 
   article.html('<p class="message">Loading ...</p>');
 
-  $.get(path, function(data) {
-    var nav = `<div class="flip"><span class="pagePrev">上一章</span><span class="pageNext">下一章</span></div>`;
-    article
-      .html(marked(data) + nav)
-      .find("pre code")
-      .map(function() {
-        Prism.highlightElement(this);
-      });
-    document.title = article.find("h1").text() + " - " + "学习笔记";
-  }).fail(function() {
-    article.html('<p class="message">Oops! ... File not found!</p>');
-  });
+  $.get(path)
+    .then(function(data) {
+      var nav = `<div class="flip"><span class="pagePrev">上一章</span><span class="pageNext">下一章</span></div>`;
+      article
+        .html(marked(data) + nav)
+        .find("pre code")
+        .map(function() {
+          Prism.highlightElement(this);
+        });
+      document.title = article.find("h1").text() + " - " + "学习笔记";
+    })
+    .fail(function() {
+      article.html('<p class="message">Oops! ... File not found!</p>');
+    });
 }
 
 getArticle();

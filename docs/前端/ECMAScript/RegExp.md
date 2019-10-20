@@ -69,17 +69,21 @@
 
 ```js
 /(\w)\1/.exec("regexp yinyong oo");
+// ["oo", "o", index: 15, input: "regexp yinyong oo", groups: undefined]
 ```
 
 ## 环视(零宽度断言、预搜索)
 
 ```js
 // 正向肯定环视 匹配index是3的位置，而不是位置为0的元素1
-"123122".match(/1(?=22)/); // ["1", index: 3, input: "123122", groups: undefined]
+"123122".match(/1(?=22)/);
+// ["1", index: 3, input: "123122", groups: undefined]
 
 // 否定环视
-"123122".match(/1(?!22)/); // ["1", index: 0, input: "123122", groups: undefined]
-"123122".match(/1(?!23)/); // ["3", index: 0, input: "123122", groups: undefined]
+"123122".match(/1(?!22)/);
+// ["1", index: 0, input: "123122", groups: undefined]
+"123122".match(/1(?!23)/);
+// ["3", index: 0, input: "123122", groups: undefined]
 ```
 
 ## i,g,m
@@ -101,7 +105,8 @@ String.prototype.replace 不会产生匹配结果变化
 
 ```js
 // 多个重复定位符
-/^^^^^hehe$$$$$$$$$$/.exec("hehe"); // ["hehe", index: 0, input: "hehe", groups: undefined]
+/^^^^^hehe$$$$$$$$$$/.exec("hehe");
+// ["hehe", index: 0, input: "hehe", groups: undefined]
 
 // 反向匹配
 /(\w\1\1\1\1)/.exec("what"); // ["w", "w", index: 0, input: "what", groups: undefined]
@@ -111,15 +116,25 @@ String.prototype.replace 不会产生匹配结果变化
 
 ## 范例
 
-```js
-var str = "(Is is the cost of of gasoline going up up";
-var patt1 = /\b([a-z]+) \1\b/gi;
-console.log(str.match(patt1)); // ["Is is", "of of", "up up"]
-```
+`反向匹配`
 
 ```js
-// 中文
-/[\u4e00-\u9fa5]+/.exec("正则"); // ["正则", index: 0, input: "正则", groups: undefined]
+"(Is is the cost of of gasoline going up up".match(/\b([a-z]+) \1\b/gi);
+// ["Is is", "of of", "up up"]
+```
+
+`中文`
+
+```js
+/[\u4e00-\u9fa5]+/.exec("正则");
+// ["正则", index: 0, input: "正则", groups: undefined]
+```
+
+`千分符`
+
+```js
+"123456789".replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+// "123,456,789"
 ```
 
 [参考链接](http://www.regexlab.com/zh/regref.htm)

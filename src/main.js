@@ -42,7 +42,6 @@ $.get("sidebar.json", function(data) {
 
   function renderSideBar(name) {
     var html = createSideBar(name);
-    console.log(menu);
     $("aside").html(html);
   }
 

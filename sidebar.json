@@ -39,6 +39,16 @@
       "path": ""
     },
     {
+      "title": "GIT",
+      "children": [
+        {
+          "title": "配置",
+          "path": "前端/GIT/配置"
+        }
+      ],
+      "path": ""
+    },
+    {
       "title": "协议",
       "children": [
         {
