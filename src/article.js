@@ -7,12 +7,6 @@ var article = $("article")
     window.location.hash =
       window.location.hash.split(sperate)[0] + sperate + $(this).attr("id");
   })
-  .on("click", ".pageNext", function() {
-    console.log("next");
-  })
-  .on("click", ".pagePrev", function() {
-    console.log("prev");
-  });
 
 function getArticle() {
   path = location.hash.substr(1).split(sperate)[0];

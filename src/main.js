@@ -12,6 +12,16 @@ $.get("sidebar.json", function(data) {
           location.hash = item.path;
         }
       }
+    } else {
+      var index = menu.findIndex(function(item) {
+        return location.hash.slice(1).split("@")[0] === item.path;
+      });
+      if (~index) {
+        var item = menu[index - 1];
+        if (item) {
+          location.hash = item.path;
+        }
+      }
     }
   });
 

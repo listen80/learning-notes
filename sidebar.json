@@ -138,26 +138,27 @@
   "数据结构": [
     {
       "title": "新建文件夹",
-      "children": [
-        {
-          "title": "线性结构",
-          "path": "数据结构/新建文件夹/线性结构"
-        }
-      ],
+      "children": [],
       "path": ""
     }
   ],
   "算法": [
     {
-      "title": "新建文件夹",
+      "title": "排序",
+      "children": [
+        {
+          "title": "sort",
+          "path": "算法/排序/sort"
+        }
+      ],
+      "path": ""
+    },
+    {
+      "title": "搜索",
       "children": [
         {
           "title": "find",
-          "path": "算法/新建文件夹/find"
-        },
-        {
-          "title": "sort",
-          "path": "算法/新建文件夹/sort"
+          "path": "算法/搜索/find"
         }
       ],
       "path": ""
