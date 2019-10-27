@@ -1,7 +1,7 @@
 $.get("sidebar.json", function(data) {
   var menu = [];
 
-  $("article").on("click", ".flip span", function() {
+  $("nav").on("click", ".flip span", function() {
     if ($(this).hasClass("pageNext")) {
       var index = menu.findIndex(function(item) {
         return location.hash.slice(1).split("@")[0] === item.path;
@@ -62,7 +62,6 @@ $.get("sidebar.json", function(data) {
       <ol class="nav navbar-nav">
       ${Object.keys(data)
         .map(function(data) {
-          ``;
           return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
         })
         .join("")}

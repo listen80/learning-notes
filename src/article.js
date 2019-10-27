@@ -25,17 +25,14 @@ function getArticle() {
 
   $.get(path)
     .then(function(data) {
-      var nav = `<div class="flip"><span class="pagePrev">上一章</span><span class="pageNext">下一章</span></div>`;
-
       article
-        .html(marked(data) + nav)
+        .html(marked(data))
         .find("pre code")
         .map(function() {
           Prism.highlightElement(this);
         });
 
       article.find("img").each(function() {
-        console.log($(this).attr("src"));
         $(this).attr("src", basePath + $(this).attr("src"));
       });
 
