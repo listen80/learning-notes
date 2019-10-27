@@ -147,11 +147,6 @@
       "title": "排序",
       "children": [
         {
-          "title": "images",
-          "children": [],
-          "path": ""
-        },
-        {
           "title": "sort",
           "path": "算法/排序/sort"
         }

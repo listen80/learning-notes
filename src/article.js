@@ -39,6 +39,8 @@ function getArticle() {
         $(this).attr("src", basePath + $(this).attr("src"));
       });
 
+      article.find("a").attr("target", "_blank");
+
       document.title = article.find("h1").text() + " - " + "学习笔记";
     })
     .fail(function() {

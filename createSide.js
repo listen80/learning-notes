@@ -4,6 +4,9 @@ const path = require("path");
 const getDir = (dir, baseUrl = []) => {
   const struct = [];
   fs.readdirSync(dir).forEach(subdir => {
+    if (subdir === "images") {
+      return;
+    }
     const sub = path.join(dir, subdir);
     const stat = fs.lstatSync(sub);
     if (stat.isDirectory()) {
@@ -34,9 +37,7 @@ const getDir = (dir, baseUrl = []) => {
 
 const modules = Object.create(null);
 
-fs.readdirSync('docs').forEach(function(
-  module
-) {
+fs.readdirSync("docs").forEach(function(module) {
   modules[module] = getDir(path.join(__dirname, "docs", module), [module]);
 });
 
