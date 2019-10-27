@@ -15,6 +15,9 @@ article h3 {
   margin-top: 3em;
 }
 
+article img {
+  max-width: 100%;
+}
 .flip {
   display: flex;
   justify-content: space-evenly;

@@ -1,6 +1,16 @@
 # 排序
 
+![复杂度](images/complex.png)
+
+> n:数据规模
+> k:“桶”的个数
+> In-place:占用常数内存，不占用额外内存
+> Out-place:占用额外内存
+> 稳定性:排序后 2 个相等值的先后顺序不变
+
 ## 冒泡排序
+
+![冒泡排序](images/bubble.gif)
 
 ```js
 function bubbleSort(arr) {
@@ -24,9 +34,11 @@ bubbleSort(arr);
 console.log(arr + "");
 ```
 
-> 优化: 立一个 flag，第二层循环没有交互，则无需排序，退出第一、二层循环即可
+> 优化: 立一个 flag，第二层循环没有交换，则无需排序，退出第一、二层循环即可
 
 ## 选择排序
+
+![选择排序](images/selection.gif)
 
 ```js
 function selectionSort(arr) {
@@ -64,9 +76,7 @@ function quickSort(arr) {
 
   function sort(start, end) {
     var flagNumber = Math.floor((start + end) / 2);
-    while(start < end) {
-
-    }
+    while (start < end) {}
   }
 }
 
