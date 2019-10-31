@@ -18,15 +18,3 @@ article h3 {
 article img {
   max-width: 100%;
 }
-.flip {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 2em;
-}
-
-.flip span {
-  background: rgba(86, 102, 141, 1);
-  color: white;
-  padding: 5px;
-  border-radius: 4px;
-}

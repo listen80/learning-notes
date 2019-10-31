@@ -11,6 +11,7 @@ Object.getOwnPropertyNames(Function);
 
 ```js
 Function.constructor === Function; // true
+Function.__proto__ === Function.prototype; // true
 ```
 
 ## 原型
