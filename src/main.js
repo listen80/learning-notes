@@ -74,9 +74,7 @@ $.get("sidebar.json", function(data) {
         .addClass("active")
         .siblings()
         .removeClass("active");
-      renderSideBar(data[$(this).data("link")]);
     })
     .find("a")
-    .eq(0)
     .trigger("click");
 });

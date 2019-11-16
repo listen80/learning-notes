@@ -45,6 +45,38 @@ function getArticle() {
     });
 }
 
-getArticle();
+var hash = {};
+function start() {
+  var hashArr = location.hash.split("@");
+  if (hash.path !== hashArr[0]) {
+    hash.path = hashArr[0] || "";
+    getArticle();
+  }
+  if (hash.type !== hash.path.split("/", 2)[0]) {
+    hash.type = hash.path.split("/", 2)[0];
+    $(".navbar-nav")
+      .find("li")
+      .each(function() {
+        if (
+          $(this)
+            .data("link")
+            .indexOf(hash.type) === 1
+        ) {
+          $(this).hasClass("active");
+        } else {
+          $(this).removeClass("active");
+        }
+      });
+    // renderSideBar(data[$(this).data("link")]);
+  }
+  if (hash.where !== hashArr[1]) {
+    hash.where = hashArr[1];
+    console.log("scroll");
+  }
+}
 
-$(window).on("hashchange", getArticle);
+start();
+
+var router = (function() {
+  $(window).on("hashchange", start);
+})();
