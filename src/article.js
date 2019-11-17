@@ -46,6 +46,7 @@ function getArticle() {
 }
 
 var hash = {};
+
 function start() {
   var hashArr = location.hash.split("@");
   if (hash.path !== hashArr[0]) {
@@ -67,6 +68,7 @@ function start() {
           $(this).removeClass("active");
         }
       });
+    // debugger;
     // renderSideBar(data[$(this).data("link")]);
   }
   if (hash.where !== hashArr[1]) {
