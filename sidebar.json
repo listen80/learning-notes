@@ -137,7 +137,22 @@
   ],
   "数据结构": [
     {
-      "title": "新建文件夹",
+      "title": "二叉树",
+      "children": [],
+      "path": ""
+    },
+    {
+      "title": "堆",
+      "children": [],
+      "path": ""
+    },
+    {
+      "title": "数组",
+      "children": [],
+      "path": ""
+    },
+    {
+      "title": "链表",
       "children": [],
       "path": ""
     }

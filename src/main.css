@@ -76,6 +76,9 @@ header li {
 .nav li {
   padding: 0 10px;
 }
+.nav li.active {
+  background-color: rgba(149, 180, 255, 1);
+}
 
 .message {
   text-align: center;
