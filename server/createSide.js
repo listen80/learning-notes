@@ -36,7 +36,7 @@ const getDir = (dir, baseUrl = []) => {
 };
 
 module.exports = function() {
-  console.log("createSide");
+  console.log(new Date().toLocaleString(), "createSide");
 
   const modules = Object.create(null);
 
