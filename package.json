@@ -2,10 +2,12 @@
   "name": "learning-notes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "node createSide"
+    "dev": "node server"
   },
   "author": "listen80",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "express": "@4.1.6"
+  }
 }

@@ -35,10 +35,14 @@ const getDir = (dir, baseUrl = []) => {
   return struct;
 };
 
-const modules = Object.create(null);
+module.exports = function() {
+  console.log("createSide");
 
-fs.readdirSync("docs").forEach(function(module) {
-  modules[module] = getDir(path.join(__dirname, "docs", module), [module]);
-});
+  const modules = Object.create(null);
 
-fs.writeFileSync("sidebar.json", JSON.stringify(modules, null, 2));
+  fs.readdirSync("docs").forEach(function(module) {
+    modules[module] = getDir(path.join("docs", module), [module]);
+  });
+
+  fs.writeFileSync("public/sidebar.json", JSON.stringify(modules, null, 0));
+};

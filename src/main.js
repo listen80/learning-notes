@@ -1,29 +1,5 @@
-$.get("sidebar.json", function(sidebarData) {
+$.get("public/sidebar.json", function(sidebarData) {
   var menu = [];
-
-  $("nav").on("click", ".flip span", function() {
-    if ($(this).hasClass("pageNext")) {
-      var index = menu.findIndex(function(item) {
-        return hash.path === item.path;
-      });
-      if (~index) {
-        var item = menu[index + 1];
-        if (item) {
-          hash.path = item.path;
-        }
-      }
-    } else {
-      var index = menu.findIndex(function(item) {
-        return hash.path === item.path;
-      });
-      if (~index) {
-        var item = menu[index - 1];
-        if (item) {
-          hash.path = item.path;
-        }
-      }
-    }
-  });
 
   article = $("article");
 
@@ -150,10 +126,37 @@ $.get("sidebar.json", function(sidebarData) {
         article.find("a").attr("target", "_blank");
 
         document.title = article.find("h1").text() + " - " + "学习笔记";
+        renderArticleNav();
       })
       .fail(function() {
         article.html('<p class="message">Oops! ... File not found!</p>');
       });
+
+    function renderArticleNav() {
+      $("nav").on("click", ".flip span", function() {
+        if ($(this).hasClass("pageNext")) {
+          var index = menu.findIndex(function(item) {
+            return hash.path === item.path;
+          });
+          if (~index) {
+            var item = menu[index + 1];
+            if (item) {
+              hash.path = item.path;
+            }
+          }
+        } else {
+          var index = menu.findIndex(function(item) {
+            return hash.path === item.path;
+          });
+          if (~index) {
+            var item = menu[index - 1];
+            if (item) {
+              hash.path = item.path;
+            }
+          }
+        }
+      });
+    }
   }
 
   $(window).on("hashchange", start);
