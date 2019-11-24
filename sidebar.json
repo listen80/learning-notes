@@ -139,22 +139,27 @@
     {
       "title": "二叉树",
       "children": [],
-      "path": ""
+      "path": "数据结构/二叉树/"
+    },
+    {
+      "title": "哈希表",
+      "children": [],
+      "path": "数据结构/哈希表/"
     },
     {
       "title": "堆",
       "children": [],
-      "path": ""
+      "path": "数据结构/堆/"
     },
     {
       "title": "数组",
       "children": [],
-      "path": ""
+      "path": "数据结构/数组/"
     },
     {
       "title": "链表",
       "children": [],
-      "path": ""
+      "path": "数据结构/链表/"
     }
   ],
   "算法": [
