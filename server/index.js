@@ -17,9 +17,6 @@ fs.watch(
         clearTimeout(timer);
       }
       timer = setTimeout(createSide, 100);
-      if (filename) {
-        // console.log("文件名:", filename);
-      }
     }
   }
 );
