@@ -1,66 +1,59 @@
+Prism.languages.js = Prism.languages.javascript;
+
 $.get("public/sidebar.json", function(sidebarData) {
-  var menu = [];
-
-  article = $("article");
-
-  function createLink(item) {
-    if (item.path) {
-      menu = menu.concat(item);
-      return `<a href="#${item.path}">${item.title}</a>`;
-    } else {
-      return item.title;
-    }
-  }
-
-  function createSideBar(data, deep = 1) {
-    return data
-      .map(function(item) {
-        if (item.children) {
-          return `<div>${createLink(item)}
-          <ol>${createSideBar(item.children, deep + 1)}</ol>
-          </div>`;
-        } else if (item.title) {
-          return `<li>${createLink(item)}</li>`;
-        } else {
-          return "";
-        }
-      })
-      .join("");
-  }
-
-  function renderSideBar(name) {
-    var html = createSideBar(name);
-    $("aside").html(html);
-  }
-
   function renderTopBar(sidebarData) {
     $("header").append(
-      `<div><a href="./"><image src="public/portrait.jpg" class="logo"/></a><ol class="nav navbar-nav">${Object.keys(
-        sidebarData
-      )
-        .map(function(data) {
-          return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
-        })
-        .join("")}
+      `<div>
+        <a href="./"><image src="public/portrait.jpg" class="logo"/></a>
+        <ol class="nav navbar-nav">
+          ${Object.keys(sidebarData)
+            .map(function(data) {
+              return `<li data-link="${data}"><a href="#${data}/" class="nav-link">${data}</a></li>`;
+            })
+            .join("")}
       </ol>
     </div>`
     );
   }
 
+  function renderSideBar(name) {
+    var menu = [];
+
+    function createLink(item) {
+      if (item.path) {
+        menu = menu.concat(item);
+        return `<a href="#${item.path}">${item.title}</a>`;
+      } else {
+        return item.title;
+      }
+    }
+
+    function createSideBar(data, deep = 1) {
+      return data
+        .map(function(item) {
+          if (item.children) {
+            return `<div>${createLink(item)}<ol>${createSideBar(item.children, deep + 1)}</ol></div>`;
+          } else if (item.title) {
+            return `<li>${createLink(item)}</li>`;
+          } else {
+            return "";
+          }
+        })
+        .join("");
+    }
+
+    $("aside").html(createSideBar(name));
+    return menu;
+  }
+
   renderTopBar(sidebarData);
 
-  window.sidebarData = sidebarData;
-
-  Prism.languages.js = Prism.languages.javascript;
-
-  var router = {};
-
-  var sperate = "@";
   var hash = {};
 
   function start() {
-    var hashArr = location.hash.substr(1).split("@");
-
+    var sperate = "@";
+    var hashArr = location.hash.substr(1).split(sperate);
+    var menu = [];
     if (hash.path !== hashArr[0]) {
       hash.path = hashArr[0] || "";
       getArticle();
@@ -72,7 +65,8 @@ $.get("public/sidebar.json", function(sidebarData) {
         .each(function() {
           var link = $(this).data("link");
           if (hash.type === link) {
-            renderSideBar(sidebarData[link]);
+            menu = renderSideBar(sidebarData[link]);
+            console.log(menu);
             $(this).addClass("active");
           } else {
             $(this).removeClass("active");
@@ -85,11 +79,9 @@ $.get("public/sidebar.json", function(sidebarData) {
     }
   }
 
-  router.push = function() {};
-  // var article = $("article").on("click", "h1, h2", function() {
-  //   window.location.hash =
-  //     window.location.hash.split(sperate)[0] + sperate + $(this).attr("id");
-  // });
+  var article = $("article").on("click", "h1, h2", function() {
+    window.location.hash = window.location.hash.split(sperate)[0] + sperate + $(this).attr("id");
+  });
 
   function getArticle() {
     // 拿到ajax路径
@@ -134,6 +126,8 @@ $.get("public/sidebar.json", function(sidebarData) {
 
     function renderArticleNav() {
       $("nav").on("click", ".flip span", function() {
+        // <span class="pagePrev">上一章</span>
+        // <span class="pageNext">下一章</span>
         if ($(this).hasClass("pageNext")) {
           var index = menu.findIndex(function(item) {
             return hash.path === item.path;
