@@ -16,7 +16,7 @@ $.get("public/sidebar.json", function(sidebarData) {
     );
   }
 
-  function renderSideBar(name) {
+  function renderSideBar(list) {
     var menu = [];
 
     function createLink(item) {
@@ -42,7 +42,14 @@ $.get("public/sidebar.json", function(sidebarData) {
         .join("");
     }
 
-    $("aside").html(createSideBar(name));
+    if (list) {
+      $("aside")
+        .html(createSideBar(list))
+        .show();
+    } else {
+      $("aside").hide();
+    }
+
     return menu;
   }
 
@@ -56,9 +63,10 @@ $.get("public/sidebar.json", function(sidebarData) {
     var menu = [];
     if (hash.path !== hashArr[0]) {
       hash.path = hashArr[0] || "";
-      getArticle();
+      getArticle(menu);
     }
     if (hash.type !== hash.path.split("/", 2)[0]) {
+      renderSideBar();
       hash.type = hash.path.split("/", 2)[0];
       $(".navbar-nav")
         .find("li")
@@ -66,7 +74,6 @@ $.get("public/sidebar.json", function(sidebarData) {
           var link = $(this).data("link");
           if (hash.type === link) {
             menu = renderSideBar(sidebarData[link]);
-            console.log(menu);
             $(this).addClass("active");
           } else {
             $(this).removeClass("active");
@@ -83,7 +90,7 @@ $.get("public/sidebar.json", function(sidebarData) {
     window.location.hash = window.location.hash.split(sperate)[0] + sperate + $(this).attr("id");
   });
 
-  function getArticle() {
+  function getArticle(menu) {
     // 拿到ajax路径
     var path = hash.path;
     if (path === "") {
