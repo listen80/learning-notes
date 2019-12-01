@@ -56,6 +56,7 @@ aside {
   padding: 10px;
   width: 220px;
   box-shadow: 1px 0px 3px #ccc;
+  display: none;
 }
 
 header > div {
