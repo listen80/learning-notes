@@ -19,8 +19,7 @@ Function.prototype._call = function(context = window, ...args) {
   return result;
 };
 
-function a(argument) {
-w}
+function a(argument) {}
 b = a.call;
 // b({a:3}, 2,3,4)
 ```
